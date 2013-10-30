@@ -8,10 +8,14 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
+//using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//using System.Windows.Forms;
+//using System.Windows;
+using System.Data;
+using System.Drawing;
 
 namespace Photo_Rainbow
 {
@@ -21,7 +25,7 @@ namespace Photo_Rainbow
     public partial class Main : Window
     {
         private static PhotoServiceManager p = new PhotoServiceManager();
-
+        
         public Main()
         {
             InitializeComponent();
@@ -43,22 +47,32 @@ namespace Photo_Rainbow
         }
 
         private void Complete_Auth_Click(object sender, RoutedEventArgs e)
-        {
+        {   
+            //just for display purpose in class
+            Img_Analysis_Click();
+
             if (String.IsNullOrEmpty(CodeText.Text))
             {
-                MessageBox.Show("You must paste the verifier code into the textbox above.");
+                System.Windows.MessageBox.Show("You must paste the verifier code into the textbox above.");
                 return;
             }
             try
             {
                 FlickrManager f = (FlickrManager)p.Manager;
                 f.CompleteAuth(CodeText.Text);
-                MessageBox.Show("User authenticated!");
+                System.Windows.MessageBox.Show("User authenticated!");
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                System.Windows.MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Img_Analysis_Click()
+        {
+            ImageAnalysis ia = new ImageAnalysis();
+            ia.Show();
         }
     }
 }
