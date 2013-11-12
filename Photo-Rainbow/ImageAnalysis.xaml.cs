@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Drawing;
 
+
 namespace Photo_Rainbow
 {
     /// <summary>
@@ -52,15 +53,20 @@ namespace Photo_Rainbow
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Image i = new Image();
+            //i.processImages();
+
             try
             {
                 ImageColorData iCD = new ImageColorData();
                 ImageAnalysis ia = new ImageAnalysis();
-                Bitmap img = new Bitmap("C:\\Users\\Administrator\\Desktop\\1.jpg");
+                Bitmap img = new Bitmap("C:\\Users\\Administrator\\Desktop\\red.jpg");
+                
+                //C:\\Users\\Administrator\\Desktop\\images\\1.jpg");
                 //( new Uri("Images/1.jpg", UriKind.Relative).AbsolutePath);
                 Dictionary<String, List<Color>> colorStructsOfImage = iCD.getColorsInImage(img);
-                float avgBrightnessByColor = iCD.calcAverageBrightnessByColor("Yellow");
-                float percentageOfColor = iCD.percentageOfColorInImage("Yellow");
+                float avgBrightnessByColor = iCD.calcAverageBrightnessByColor("Red");
+                float percentageOfColor = iCD.percentageOfColorInImage("Red");
                 label8.Content = "PERCENTAGE BY COLOR";
                 label1.Content = "Violet     " + iCD.percentageOfColorInImage("Violet").ToString();
                 label2.Content = "Indigo     " + iCD.percentageOfColorInImage("Indigo").ToString();
@@ -103,6 +109,6 @@ namespace Photo_Rainbow
             }
 
         }
-        
+ 
     }
 }

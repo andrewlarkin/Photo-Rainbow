@@ -24,11 +24,11 @@ namespace Photo_Rainbow
         {
             get { return this._colorByPixel; }
         }
-        
-        public Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
-        {            
+
+        public Dictionary<String, List<Color>> getColorsInImage(Bitmap imageAsBitmap)
+        {
             int xCoord = 0, yCoord = 0;
-            float temp = 0;            
+            float temp = 0;
             this.imageWidth = imageAsBitmap.Width;
             this.imageHeight = imageAsBitmap.Height;
 
@@ -110,9 +110,9 @@ namespace Photo_Rainbow
 
             catch (Exception e)
             {
-                
+
             }
-            return _colorByPixel;                
+            return _colorByPixel;
         }
 
         public float percentageOfColorInImage(String colorName)
@@ -135,8 +135,8 @@ namespace Photo_Rainbow
             float averageBrightnessByColor = 0;
             try
             {
-            int numberOfPixelsByColor = _colorByPixel[colorName].Count();
-            averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
+                int numberOfPixelsByColor = _colorByPixel[colorName].Count();
+                averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
             }
             catch (Exception e)
             {

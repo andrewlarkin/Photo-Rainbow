@@ -78,10 +78,12 @@
     </Compile>
     <Compile Include="FlickrManager.cs" />
     <Compile Include="IAPIManager.cs" />
+    <Compile Include="ImageAnalysis.cs" />
     <Compile Include="ImageAnalysis.xaml.cs">
       <DependentUpon>ImageAnalysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageColorData.cs" />
+    <Compile Include="ImageColorData2.cs" />
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
       <SubType>Code</SubType>
