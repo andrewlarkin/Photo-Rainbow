@@ -58,7 +58,7 @@ namespace Photo_Rainbow
 
             try
             {
-                ImageColorData iCD = new ImageColorData();
+                ImageColorData2 iCD = new ImageColorData2();
                 ImageAnalysis ia = new ImageAnalysis();
                 Bitmap img = new Bitmap("C:\\Users\\Administrator\\Desktop\\red.jpg");
                 
