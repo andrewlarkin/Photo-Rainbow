@@ -14,23 +14,24 @@ namespace Photo_Rainbow
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
 
-        public Dictionary<String, float> brightnessColorDict
+        public ImageColorData()
         {
-            get { return this._brightnessColorDict; }
+            initalizeClassMembers();
         }
 
-        public Dictionary<String, List<Color>> colorByPixel
+        public ImageColorData(Bitmap bitmap)
         {
-            get { return this._colorByPixel; }
+            initalizeClassMembers();
+            _colorByPixel = getColorsInImage(bitmap);
         }
-        
-        public Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
-        {            
+
+        public Dictionary<String, List<Color>> getColorsInImage(Bitmap imageAsBitmap)
+        {
             int xCoord = 0, yCoord = 0;
-            float temp = 0;            
+            float temp = 0;
             this.imageWidth = imageAsBitmap.Width;
             this.imageHeight = imageAsBitmap.Height;
-                
+
             for (xCoord = 0; xCoord < this.imageWidth; xCoord++)
             {
                 for (yCoord = 0; yCoord < this.imageHeight; yCoord++)
@@ -56,14 +57,14 @@ namespace Photo_Rainbow
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Blue");
                     }
-                        
+
                     temp = pixelColorHue - Color.Green.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Green");
                     }
-                        
+
                     temp = pixelColorHue - Color.Yellow.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
@@ -107,27 +108,39 @@ namespace Photo_Rainbow
                     {
                         List<Color> pixelColorStructure = new List<Color>();
                         pixelColorStructure.Add(imgPixelColor);
-                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);                        
-                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness()); 
-                    }                                     
+                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);
+                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness());
+                    }
                 }
             }
-            return _colorByPixel;                
+            return _colorByPixel;
         }
 
         public float percentageOfColorInImage(String colorName)
         {
-            float numberofPixelsByColor = _colorByPixel[colorName].Count();
-            float totalPixelsInImage = imageWidth * imageHeight;
-            float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
-            return percentageOfColor;
+            if (_colorByPixel.Count != 0)
+            {
+                float numberofPixelsByColor = _colorByPixel[colorName].Count();
+                float totalPixelsInImage = imageWidth * imageHeight;
+                float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
+                return percentageOfColor;
+            }
+            else
+                return 0;
         }
         public float calcAverageBrightnessByColor(String colorName)
         {
-            float averageBrightnessByColor = 0;
-            int numberOfPixelsByColor = _colorByPixel[colorName].Count();
-            averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
-            return averageBrightnessByColor;
+            if (_colorByPixel.Count != 0)
+            {
+                float averageBrightnessByColor = 0;
+                int numberOfPixelsByColor = _colorByPixel[colorName].Count();
+                averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
+                return averageBrightnessByColor;
+            }
+            else
+            {
+                return 0;
+            }
         }
         private static float adjustHue(float temp)
         {
@@ -142,7 +155,7 @@ namespace Photo_Rainbow
             }
         }
 
-        public void imageColorData()
+        public void initalizeClassMembers()
         {
             imageWidth = 0;
             imageHeight = 0;

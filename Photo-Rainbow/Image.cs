@@ -13,10 +13,15 @@ namespace Photo_Rainbow
     {
         public static string url;
         private static Bitmap img;
+        private ImageColorData colData;
+        private String colName;
 
         public Image(string u)
         {
             url = u;
+            Download();
+            colName = "";
+            colData = new ImageColorData(img);
         }
 
         public void Download()
@@ -52,5 +57,21 @@ namespace Photo_Rainbow
             set { img = value; }
             get { return img; }
         }
+
+        public String colorName
+        {
+            set { colName = value; }
+            get { return colName; }
+        }
+        public float brightnessOfColor
+        {
+            get { return colData.calcAverageBrightnessByColor(colName); }
+        }
+
+        public float percentageOfColor
+        {
+            get { return colData.percentageOfColorInImage(colName); }
+        }
+
     }
 }

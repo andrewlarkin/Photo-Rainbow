@@ -27,7 +27,7 @@ namespace Photo_Rainbow
         {
             InitializeComponent();
 
-            FlickrManager f = new FlickrManager();            
+            FlickrManager f = new FlickrManager();
             p.LoadManager(f);
         }
 
@@ -56,13 +56,37 @@ namespace Photo_Rainbow
                 f.CompleteAuth(CodeText.Text);
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
-                {                    
+                {
                     List<Image> imgObjs = f.GetPhotos();
-                    ImageColorData img = new ImageColorData();
                     foreach (Image imgObj in imgObjs)
-                    {       
-                 
-                        Dictionary<String, List<System.Drawing.Color>> imgColor = img.getColorsInImage(imgObj.Img);                        
+                    {
+                        imgObj.colorName = "Violet";
+                        float percentageViolet = imgObj.percentageOfColor;
+                        float brightnessViolet = imgObj.brightnessOfColor;
+
+                        imgObj.colorName = "Indigo";
+                        float percentageIndigo = imgObj.percentageOfColor;
+                        float brightnessIndigo = imgObj.brightnessOfColor;
+
+                        imgObj.colorName = "Blue";
+                        float percentageBlue = imgObj.percentageOfColor;
+                        float brightnessBlue = imgObj.brightnessOfColor;
+
+                        imgObj.colorName = "Green";
+                        float percentageGreen = imgObj.percentageOfColor;
+                        float brightnessGreen = imgObj.brightnessOfColor;
+
+                        imgObj.colorName = "Yellow";
+                        float percentageYellow = imgObj.percentageOfColor;
+                        float brightnessYellow = imgObj.brightnessOfColor;
+
+                        imgObj.colorName = "Orange";
+                        float percentageOrange = imgObj.percentageOfColor;
+                        float brightnessOrange = imgObj.brightnessOfColor;
+
+                        imgObj.colorName = "Red";
+                        float percentageRed = imgObj.percentageOfColor;
+                        float brightnessRed = imgObj.brightnessOfColor;
                     }
                 }
             }
@@ -70,12 +94,6 @@ namespace Photo_Rainbow
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void Img_Analysis_Click()
-        {
-            ImageAnalysis ia = new ImageAnalysis();
-            ia.Show();
         }
     }
 }
