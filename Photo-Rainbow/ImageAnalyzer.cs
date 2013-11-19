@@ -91,7 +91,7 @@ namespace Photo_Rainbow
                         Color imgPixelColor = imageAsBitmap.GetPixel(i, j);
                         double hue = (double)imgPixelColor.GetHue();
 
-                        color = colorLookup[(int)Math.Floor(Math.Abs(hue - 1)/30)]; //Normalize the color data, get color from lookup table
+                        color = colorLookup[(int)Math.Floor(Math.Abs(hue - 16)/30)]; //Normalize the color data, get color from lookup table
 
                         colorTally[color] += 1;
 
