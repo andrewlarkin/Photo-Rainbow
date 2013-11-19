@@ -71,11 +71,5 @@ namespace Photo_Rainbow
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void Img_Analysis_Click()
-        {
-            ImageAnalysis ia = new ImageAnalysis();
-            ia.Show();
-        }
     }
 }
