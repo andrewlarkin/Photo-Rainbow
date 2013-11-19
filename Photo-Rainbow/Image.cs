@@ -39,7 +39,7 @@ namespace Photo_Rainbow
             }
         }
 
-        //TODO: Create accessor for color data
+        
 
         public string Url
         {
