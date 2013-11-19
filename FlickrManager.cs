@@ -15,7 +15,7 @@ namespace Photo_Rainbow
 
 
         private static Flickr instance;
-        private OAuthRequestToken requestToken;
+        private OAuthRequestToken requestToken; 
 
         public FlickrManager()
         {
@@ -71,18 +71,18 @@ namespace Photo_Rainbow
         {
             List<Image> images = new List<Image>();
 
-            PhotoCollection photocollection = Instance.PeopleGetPhotos("me");
+            PhotoCollection photocollection = Instance.PeopleGetPhotos("me");            
             foreach (Photo p in photocollection)
             {
                 if (p.LargeUrl != null)
                 {
-                    Image userImage = new Image(p.LargeUrl);
+                    Image userImage = new Image(p.LargeUrl);                    
                     images.Add(userImage);
                 }
             }
 
             return images;
-
+        
         }
 
     }

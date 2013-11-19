@@ -1,37 +1,35 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
-namespace Photo_Rainbow
+namespace SimpleDrawing
 {
-    class ImageColorData
+    class imageColorData
     {
         private int imageWidth;
         private int imageHeight;
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
 
-        public ImageColorData()
+        public Dictionary<String, float> brightnessColorDict
         {
-            initalizeClassMembers();
+            get { return this._brightnessColorDict; }
         }
 
-        public ImageColorData(Bitmap bitmap)
+        public Dictionary<String, List<Color>> colorByPixel
         {
-            initalizeClassMembers();
-            _colorByPixel = getColorsInImage(bitmap);
+            get { return this._colorByPixel; }
         }
-
-        public Dictionary<String, List<Color>> getColorsInImage(Bitmap imageAsBitmap)
-        {
+        
+        public Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
+        {            
             int xCoord = 0, yCoord = 0;
-            float temp = 0;
+            float temp = 0;            
             this.imageWidth = imageAsBitmap.Width;
             this.imageHeight = imageAsBitmap.Height;
-
+                
             for (xCoord = 0; xCoord < this.imageWidth; xCoord++)
             {
                 for (yCoord = 0; yCoord < this.imageHeight; yCoord++)
@@ -57,14 +55,14 @@ namespace Photo_Rainbow
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Blue");
                     }
-
+                        
                     temp = pixelColorHue - Color.Green.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Green");
                     }
-
+                        
                     temp = pixelColorHue - Color.Yellow.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
@@ -78,16 +76,14 @@ namespace Photo_Rainbow
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Orange");
                     }
-
+                    //Color.Red.GetHue() gives 0 degree
                     temp = pixelColorHue - Color.Red.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Red");
                     }
-
-                    //Color Red has 2 hues one is 0 degree and another is 360 degree.
-                    //C# GetHue() method gives only 0 degree.
+                    //fringe case: Red have 2 degrees in a circle 0 and 360.
                     temp = pixelColorHue - 360;
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
@@ -108,39 +104,34 @@ namespace Photo_Rainbow
                     {
                         List<Color> pixelColorStructure = new List<Color>();
                         pixelColorStructure.Add(imgPixelColor);
-                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);
-                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness());
-                    }
+                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);                        
+                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness()); 
+                    }                                     
                 }
             }
-            return _colorByPixel;
+            return _colorByPixel;                
         }
 
         public float percentageOfColorInImage(String colorName)
         {
-            if (_colorByPixel.Count != 0)
+            float percentageOfColor = 0;
+            if (_colorByPixel.ContainsKey(colorName))
             {
                 float numberofPixelsByColor = _colorByPixel[colorName].Count();
                 float totalPixelsInImage = imageWidth * imageHeight;
-                float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
-                return percentageOfColor;
+                percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;                
             }
-            else
-                return 0;
+            return percentageOfColor;
         }
         public float calcAverageBrightnessByColor(String colorName)
         {
-            if (_colorByPixel.Count != 0)
+            float averageBrightnessByColor = 0;
+            if (_colorByPixel.ContainsKey(colorName))
             {
-                float averageBrightnessByColor = 0;
                 int numberOfPixelsByColor = _colorByPixel[colorName].Count();
-                averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
-                return averageBrightnessByColor;
+                averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;                
             }
-            else
-            {
-                return 0;
-            }
+            return averageBrightnessByColor;
         }
         private static float adjustHue(float temp)
         {
@@ -154,8 +145,7 @@ namespace Photo_Rainbow
                 return temp;
             }
         }
-
-        public void initalizeClassMembers()
+        public imageColorData()
         {
             imageWidth = 0;
             imageHeight = 0;

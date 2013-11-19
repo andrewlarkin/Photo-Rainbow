@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,14 +24,14 @@ namespace Photo_Rainbow
             initalizeClassMembers();
             _colorByPixel = getColorsInImage(bitmap);
         }
-
-        public Dictionary<String, List<Color>> getColorsInImage(Bitmap imageAsBitmap)
-        {
+                
+        public Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
+        {            
             int xCoord = 0, yCoord = 0;
-            float temp = 0;
+            float temp = 0;            
             this.imageWidth = imageAsBitmap.Width;
             this.imageHeight = imageAsBitmap.Height;
-
+                
             for (xCoord = 0; xCoord < this.imageWidth; xCoord++)
             {
                 for (yCoord = 0; yCoord < this.imageHeight; yCoord++)
@@ -57,14 +57,14 @@ namespace Photo_Rainbow
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Blue");
                     }
-
+                        
                     temp = pixelColorHue - Color.Green.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Green");
                     }
-
+                        
                     temp = pixelColorHue - Color.Yellow.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
@@ -108,12 +108,12 @@ namespace Photo_Rainbow
                     {
                         List<Color> pixelColorStructure = new List<Color>();
                         pixelColorStructure.Add(imgPixelColor);
-                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);
-                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness());
-                    }
+                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);                        
+                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness()); 
+                    }                                     
                 }
             }
-            return _colorByPixel;
+            return _colorByPixel;                
         }
 
         public float percentageOfColorInImage(String colorName)
@@ -154,7 +154,7 @@ namespace Photo_Rainbow
                 return temp;
             }
         }
-
+        
         public void initalizeClassMembers()
         {
             imageWidth = 0;

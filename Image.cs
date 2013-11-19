@@ -65,12 +65,12 @@ namespace Photo_Rainbow
         }
         public float brightnessOfColor
         {
-            get { return colData.calcAverageBrightnessByColor(colName); }
+            get { return colData.calcAverageBrightnessByColor(colName); }            
         }
 
         public float percentageOfColor
         {
-            get { return colData.percentageOfColorInImage(colName); }
+            get { return colData.percentageOfColorInImage(colName); }  
         }
 
     }
