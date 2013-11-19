@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Photo_Rainbow
 {
-    class ImageAnalysis2
+    class ImageAnalysis
     {
         public void processImages()
         {

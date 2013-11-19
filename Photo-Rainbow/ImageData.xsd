@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImageData"
+    targetNamespace="http://tempuri.org/ImageData.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/ImageData.xsd"
+    xmlns:mstns="http://tempuri.org/ImageData.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:complexType name="colorDataType">
+    <xs:sequence>
+      <xs:element name="violet" type="xs:integer"></xs:element>
+      <xs:element name="indigo" type="xs:integer"></xs:element>
+      <xs:element name="blue" type="xs:integer"></xs:element>
+      <xs:element name="green" type="xs:integer"></xs:element>
+      <xs:element name="yellow" type="xs:integer"></xs:element>
+      <xs:element name="orange" type="xs:integer"></xs:element>
+      <xs:element name="red" type="xs:integer"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Images">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Image">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="url" type="xs:string"></xs:element>
+              <xs:element name="color" type="colorDataType"></xs:element>
+              <xs:element name="brightness" type="xs:integer"></xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

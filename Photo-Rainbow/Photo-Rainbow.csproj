@@ -67,6 +67,9 @@
     </Compile>
     <Compile Include="FlickrManager.cs" />
     <Compile Include="IAPIManager.cs" />
+    <Compile Include="ImageAnalysis.cs" />
+    <Compile Include="ImageAnalyzer.cs" />
+    <Compile Include="ImageColorData2.cs" />
     <Compile Include="ImageColorData.cs" />
     <Compile Include="Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
@@ -93,6 +96,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ImageData.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
