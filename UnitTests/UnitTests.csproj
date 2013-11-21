@@ -37,13 +37,13 @@
   <ItemGroup>
     <Reference Include="FlickrNet, Version=3.7.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Projects\Photo-Rainbow\ThirdPartyLibraries\FlickrNet.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Desktop\Ayesha\Photo-Rainbow\packages\FlickrNet.3.7.0\lib\net20\FlickrNet.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.0.10827\NET40\Moq.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Desktop\Ayesha\Photo-Rainbow\packages\Moq.4.0.10827\NET40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Desktop\Ayesha\Photo-Rainbow\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>

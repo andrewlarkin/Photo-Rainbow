@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Net;
 using System.IO;
-using System.Threading;
-using System.Text.RegularExpressions;
 
 namespace Photo_Rainbow
 {
@@ -17,10 +13,6 @@ namespace Photo_Rainbow
     {
         public static string url;
         private static Bitmap img;
-
-        public Image()
-        {
-        }
 
         public Image(string u)
         {
@@ -59,6 +51,6 @@ namespace Photo_Rainbow
         {
             set { img = value; }
             get { return img; }
-        }  
+        }
     }
 }
