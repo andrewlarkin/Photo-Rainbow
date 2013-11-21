@@ -29,17 +29,21 @@ namespace Photo_Rainbow
 
         public void Download()
         {
+            WebClient client = new WebClient();
+            Stream stream = client.OpenRead(url);
+
             try
             {
-                WebClient client = new WebClient();
-                Stream stream = client.OpenRead(url);
                 img = new Bitmap(stream);
                 stream.Flush();
-                stream.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                stream.Close();
             }
         }
 

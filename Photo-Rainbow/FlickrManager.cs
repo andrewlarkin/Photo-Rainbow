@@ -33,6 +33,7 @@ namespace Photo_Rainbow
         {
             try
             {
+
                 OAuthToken = Instance.OAuthGetAccessToken(requestToken, Code);
             }
             catch (FlickrApiException ex)
@@ -70,17 +71,19 @@ namespace Photo_Rainbow
         {
             List<Image> images = new List<Image>();
 
-            PhotoCollection photocollection = Instance.PeopleGetPhotos("me");
-
+            PhotoCollection photocollection = Instance.PeopleGetPhotos();            
             foreach (Photo p in photocollection)
             {
-                if (p.OriginalUrl != null)
+                if (p.LargeUrl != null)
                 {
-                    images.Add(new Image(p.OriginalUrl));
+                    Image userImage = new Image(p.LargeUrl);
+                    userImage.Download();
+                    images.Add(userImage);
                 }
             }
 
             return images;
+        
         }
 
     }
