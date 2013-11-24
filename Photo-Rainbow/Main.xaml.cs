@@ -57,37 +57,7 @@ namespace Photo_Rainbow
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
                 {
-                    List<Image> imgObjs = f.GetPhotos();
-                    foreach (Image imgObj in imgObjs)
-                    {
-                        imgObj.colorName = "Violet";
-                        float percentageViolet = imgObj.percentageOfColor;
-                        float brightnessViolet = imgObj.brightnessOfColor;
-
-                        imgObj.colorName = "Indigo";
-                        float percentageIndigo = imgObj.percentageOfColor;
-                        float brightnessIndigo = imgObj.brightnessOfColor;
-
-                        imgObj.colorName = "Blue";
-                        float percentageBlue = imgObj.percentageOfColor;
-                        float brightnessBlue = imgObj.brightnessOfColor;
-
-                        imgObj.colorName = "Green";
-                        float percentageGreen = imgObj.percentageOfColor;
-                        float brightnessGreen = imgObj.brightnessOfColor;
-
-                        imgObj.colorName = "Yellow";
-                        float percentageYellow = imgObj.percentageOfColor;
-                        float brightnessYellow = imgObj.brightnessOfColor;
-
-                        imgObj.colorName = "Orange";
-                        float percentageOrange = imgObj.percentageOfColor;
-                        float brightnessOrange = imgObj.brightnessOfColor;
-
-                        imgObj.colorName = "Red";
-                        float percentageRed = imgObj.percentageOfColor;
-                        float brightnessRed = imgObj.brightnessOfColor;
-                    }
+                    List<Image> imgObjs = f.GetPhotos();                    
                 }                               
             }            
             catch (Exception ex)

@@ -9,27 +9,37 @@ using System.IO;
 
 namespace Photo_Rainbow
 {
-    public class Image
+    public class Image 
     {
-        public static string url;
-        private static Bitmap img;
-        private ImageColorData colData;
-        private String colName;
-
-
-        public Image(string u)
+        public static string imageUrl = "";
+        private static Bitmap img = null;       
+        private static Image theInstance = null;
+        private ImageColorData colDataInst = null;
+        private Dictionary<Bitmap, List<Dictionary<String, float>>> imgVIBGYORInfo;
+        /*public Image(string imgUrl)
         {
-            url = u;
+            imageUrl = imgUrl;
             Download();
             colName = "";
             colData = new ImageColorData(img);
 
-        }
+        }*/
 
+        public void getAndProcessImg(String imgUrl)
+        {
+            imageUrl = imgUrl;
+            Download();            
+            colDataInst = new ImageColorData(img);
+            imgVIBGYORInfo = colDataInst.GetColorData();
+        }
+        private Image()
+        {
+
+        }
         public void Download()
         {
             WebClient client = new WebClient();
-            Stream stream = client.OpenRead(url);
+            Stream stream = client.OpenRead(imageUrl);
 
             try
             {
@@ -50,17 +60,26 @@ namespace Photo_Rainbow
 
         public string Url
         {
-            set { url = value; }
-            get { return url; }
+            set { imageUrl = value; }
+            get { return imageUrl; }
         }
 
+        public Dictionary<Bitmap, List<Dictionary<String, float>>> ImgVIBGYORInfo
+        {
+            get { return imgVIBGYORInfo; }
+        }
+        public static Image GetInstance()
+        {
+            theInstance = new Image();
+            return theInstance;
+        }
         public Bitmap Img
         {
             set { img = value; }
             get { return img; }
         }
-
-        public String colorName
+       
+       /* public String colorName
         {
             set { colName = value; }
             get { return colName; }
@@ -73,7 +92,7 @@ namespace Photo_Rainbow
         public float percentageOfColor
         {
             get { return colData.percentageOfColorInImage(colName); }
-        }
+        }*/
 
     }
 }
