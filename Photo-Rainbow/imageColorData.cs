@@ -23,6 +23,17 @@ namespace Photo_Rainbow
         {
             get { return this._colorByPixel; }
         }
+
+        public ImageColorData()
+        {
+            initializeClassMembers();
+        }
+
+        public ImageColorData(Bitmap bitmap)
+        {
+            initializeClassMembers();
+            _colorByPixel = getColorsInImage(bitmap);
+        }
         
         public Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
         {            
@@ -142,7 +153,7 @@ namespace Photo_Rainbow
             }
         }
 
-        public void imageColorData()
+        public void initializeClassMembers()
         {
             imageWidth = 0;
             imageHeight = 0;
