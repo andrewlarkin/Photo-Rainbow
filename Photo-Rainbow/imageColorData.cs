@@ -13,7 +13,13 @@ namespace Photo_Rainbow
         private int imageHeight;
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
+        private Dictionary<String, List<float>> _colorKeyPixValue;
         private Bitmap bitmapImg;
+
+        public Dictionary<String, List<float>> colorKeyPixValue
+        {
+            get { return _colorKeyPixValue; }
+        }
 
         public Dictionary<String, float> brightnessColorDict
         {
@@ -48,9 +54,9 @@ namespace Photo_Rainbow
             {
                 for (yCoord = 0; yCoord < this.imageHeight; yCoord++)
                 {
-                    Dictionary<float, String> imgVIBGYORHueDiffDict = new Dictionary<float, string>();
+                    Dictionary<float, String> imgVIBGYORHueDiffDict = new Dictionary<float, string>();                    
                     List<float> imgVIBGYORHueDiff = new List<float>();
-                    Color imgPixelColor = imageAsBitmap.GetPixel(xCoord, yCoord);
+                    Color imgPixelColor = imageAsBitmap.GetPixel(xCoord, yCoord);                    
                     float pixelColorHue = imgPixelColor.GetHue();
                     temp = pixelColorHue - Color.Violet.GetHue();
                     temp = adjustHue(temp);
@@ -114,13 +120,17 @@ namespace Photo_Rainbow
                     if (_colorByPixel.ContainsKey(imgVIBGYORHueDiffDict[closestPixelColorByHue]))
                     {
                         _colorByPixel[imgVIBGYORHueDiffDict[closestPixelColorByHue]].Add(imgPixelColor);
+                        _colorKeyPixValue[imgVIBGYORHueDiffDict[closestPixelColorByHue]].Add(pixelColorHue);
                         _brightnessColorDict[imgVIBGYORHueDiffDict[closestPixelColorByHue]] += imgPixelColor.GetBrightness();
                     }
                     else
                     {
                         List<Color> pixelColorStructure = new List<Color>();
+                        List<float> pixelsHues = new List<float>();
                         pixelColorStructure.Add(imgPixelColor);
-                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);                        
+                        pixelsHues.Add(pixelColorHue);
+                        _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);
+                        _colorKeyPixValue.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelsHues);
                         _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness()); 
                     }                                     
                 }
@@ -188,6 +198,7 @@ namespace Photo_Rainbow
             imageHeight = 0;
             _brightnessColorDict = new Dictionary<string, float>();
             _colorByPixel = new Dictionary<string, List<Color>>();
+            _colorKeyPixValue = new Dictionary<String, List<float>>();
         }
     }
 }
