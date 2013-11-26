@@ -76,11 +76,10 @@ namespace Photo_Rainbow
             foreach (Photo p in photocollection)
             {
                 if (p.LargeUrl != null)
-                {
-                    //Image userImage = new Image(p.LargeUrl);
-                    //userImage.Download();
-                    Image userImage = Image.GetInstance();
-                    userImage.getAndProcessImg(p.LargeUrl);
+                {                    
+                    Image userImage = new Image(p.LargeUrl);
+                    ImageColorData vibgyorData = new ImageColorData();
+                    vibgyorData.GetColorData(userImage);
                     images.Add(userImage);
                 }
             }

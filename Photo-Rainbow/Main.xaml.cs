@@ -58,7 +58,7 @@ namespace Photo_Rainbow
                 if (f.IsAuthenticated())
                 {
                     List<Image> imgObjs = f.GetPhotos();                    
-                }                               
+                }                         
             }            
             catch (Exception ex)
             {

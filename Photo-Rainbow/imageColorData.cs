@@ -14,8 +14,7 @@ namespace Photo_Rainbow
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
         private Dictionary<String, List<float>> _colorKeyPixValue;
-        private Bitmap bitmapImg;
-
+        
         public Dictionary<String, List<float>> colorKeyPixValue
         {
             get { return _colorKeyPixValue; }
@@ -35,14 +34,7 @@ namespace Photo_Rainbow
         {
             initializeClassMembers();
         }
-
-        public ImageColorData(Bitmap bitmap)
-        {
-            initializeClassMembers();
-            this.bitmapImg = bitmap;
-            _colorByPixel = getColorsInImage(bitmap);
-        }
-        
+       
         private Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
         {            
             int xCoord = 0, yCoord = 0;
@@ -165,30 +157,31 @@ namespace Photo_Rainbow
             }
         }
 
-        public Dictionary<Bitmap, List<Dictionary<String, float>>> GetColorData()
-        {            
+        public Dictionary<Bitmap, List<Dictionary<String, float>>> GetColorData(Image imgObj)
+        {
+            _colorByPixel = getColorsInImage(imgObj.Img);
             Dictionary<Bitmap, List<Dictionary<String, float>>> imageDataDict = new Dictionary<Bitmap, List<Dictionary<String, float>>>();
             Dictionary<String, float> colPercentageDict = new Dictionary<String, float>();
             List<Dictionary<String, float>> imgInfoDictList = new List<Dictionary<string,float>>();
-            colPercentageDict.Add("VioletPercentageInImg", percentageOfColorInImage("Violet"));
-            colPercentageDict.Add("IndigoPercentageInImg", percentageOfColorInImage("Indigo"));
-            colPercentageDict.Add("BluePercentageInImg", percentageOfColorInImage("Blue"));
-            colPercentageDict.Add("GreenPercentageInImg", percentageOfColorInImage("Green"));
-            colPercentageDict.Add("YellowPercentageInImg", percentageOfColorInImage("Yellow"));
-            colPercentageDict.Add("OrangePercentageInImg", percentageOfColorInImage("Orange"));
-            colPercentageDict.Add("RedPercentageInImg", percentageOfColorInImage("Red"));
+            colPercentageDict.Add("Violet", percentageOfColorInImage("Violet"));
+            colPercentageDict.Add("Indigo", percentageOfColorInImage("Indigo"));
+            colPercentageDict.Add("Blue", percentageOfColorInImage("Blue"));
+            colPercentageDict.Add("Green", percentageOfColorInImage("Green"));
+            colPercentageDict.Add("Yellow", percentageOfColorInImage("Yellow"));
+            colPercentageDict.Add("Orange", percentageOfColorInImage("Orange"));
+            colPercentageDict.Add("Red", percentageOfColorInImage("Red"));
             imgInfoDictList.Add(colPercentageDict);
             
             Dictionary<String, float> colAvgBrightnessDict = new Dictionary<String, float>();
-            colAvgBrightnessDict.Add("VioletAvgBrighntessInImg", calcAverageBrightnessByColor("Violet"));
-            colAvgBrightnessDict.Add("IndigoAvgBrightnessInImg", calcAverageBrightnessByColor("Indigo"));
-            colAvgBrightnessDict.Add("BlueAvgBrightnessInImg", calcAverageBrightnessByColor("Blue"));
-            colAvgBrightnessDict.Add("GreenAvgBrightnessInImg", calcAverageBrightnessByColor("Green"));
-            colAvgBrightnessDict.Add("YellowAvgBrightnessInImg", calcAverageBrightnessByColor("Yellow"));
-            colAvgBrightnessDict.Add("OrangeAvgBrightnessInImg", calcAverageBrightnessByColor("Orange"));
-            colAvgBrightnessDict.Add("RedAvgBrightnessInImg", calcAverageBrightnessByColor("Red"));
+            colAvgBrightnessDict.Add("Violet", calcAverageBrightnessByColor("Violet"));
+            colAvgBrightnessDict.Add("Indigo", calcAverageBrightnessByColor("Indigo"));
+            colAvgBrightnessDict.Add("Blue", calcAverageBrightnessByColor("Blue"));
+            colAvgBrightnessDict.Add("Green", calcAverageBrightnessByColor("Green"));
+            colAvgBrightnessDict.Add("Yellow", calcAverageBrightnessByColor("Yellow"));
+            colAvgBrightnessDict.Add("Orange", calcAverageBrightnessByColor("Orange"));
+            colAvgBrightnessDict.Add("Red", calcAverageBrightnessByColor("Red"));
             imgInfoDictList.Add(colAvgBrightnessDict);
-            imageDataDict.Add(bitmapImg, imgInfoDictList);
+            imageDataDict.Add(imgObj.Img, imgInfoDictList);
             return imageDataDict;
         }
 

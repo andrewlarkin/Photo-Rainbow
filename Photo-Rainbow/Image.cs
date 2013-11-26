@@ -13,26 +13,13 @@ namespace Photo_Rainbow
     {
         public static string imageUrl = "";
         private static Bitmap img = null;       
-        private static Image theInstance = null;
-        private ImageColorData colDataInst = null;
-        private Dictionary<Bitmap, List<Dictionary<String, float>>> imgVIBGYORInfo;
-        /*public Image(string imgUrl)
+                
+        public Image(String imgUrl)
         {
             imageUrl = imgUrl;
-            Download();
-            colName = "";
-            colData = new ImageColorData(img);
-
-        }*/
-
-        public void getAndProcessImg(String imgUrl)
-        {
-            imageUrl = imgUrl;
-            Download();            
-            colDataInst = new ImageColorData(img);
-            imgVIBGYORInfo = colDataInst.GetColorData();
+            Download();                        
         }
-        private Image()
+        public Image()
         {
 
         }
@@ -63,36 +50,12 @@ namespace Photo_Rainbow
             set { imageUrl = value; }
             get { return imageUrl; }
         }
-
-        public Dictionary<Bitmap, List<Dictionary<String, float>>> ImgVIBGYORInfo
-        {
-            get { return imgVIBGYORInfo; }
-        }
-        public static Image GetInstance()
-        {
-            theInstance = new Image();
-            return theInstance;
-        }
+        
         public Bitmap Img
         {
             set { img = value; }
             get { return img; }
         }
-       
-       /* public String colorName
-        {
-            set { colName = value; }
-            get { return colName; }
-        }
-        public float brightnessOfColor
-        {
-            get { return colData.calcAverageBrightnessByColor(colName); }
-        }
-
-        public float percentageOfColor
-        {
-            get { return colData.percentageOfColorInImage(colName); }
-        }*/
-
+             
     }
 }
