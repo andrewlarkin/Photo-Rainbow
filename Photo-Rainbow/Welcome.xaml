@@ -1,0 +1,14 @@
+﻿<Window x:Class="Photo_Rainbow.Welcome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Welcome" Height="400" Width="600">
+    <Grid>
+        <Image x:Name="background" HorizontalAlignment="Left" Height="370" VerticalAlignment="Top" Width="592" Source="pack://siteoforigin:,,,/Resources/background1.PNG" Stretch="UniformToFill"/>
+        <Button Content="Start !" HorizontalAlignment="Left" Margin="258,277,0,0" VerticalAlignment="Top" Width="94" Height="29" FontSize="16" Foreground="#FFFDFBFB" Click="Button_Click_1">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</Window>
