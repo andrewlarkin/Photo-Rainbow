@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,11 +56,11 @@ namespace Photo_Rainbow
                 f.CompleteAuth(CodeText.Text);
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
-                {                    
+                {
                     List<Image> imgObjs = f.GetPhotos();
-                    ImageAnalyzer procImages = new ImageAnalyzer(imgObjs);                 
-                }
-            }
+                    ImageAnalyzer procImages = new ImageAnalyzer(imgObjs);
+                }                         
+            }            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
