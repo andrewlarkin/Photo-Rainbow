@@ -23,11 +23,11 @@ namespace Photo_Rainbow
         {
             InitializeComponent();
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        
+        private void App_Start_Button_Click(object sender, RoutedEventArgs e)
         {
-            login lg = new login();
-            lg.Show();
+            Main authWindow = new Main();
+            authWindow.Show();
             this.Close();
         }
     }

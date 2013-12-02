@@ -25,13 +25,12 @@ namespace Photo_Rainbow
 
         public Main()
         {
-            InitializeComponent();
-
+            InitializeComponent();           
             FlickrManager f = new FlickrManager();            
             p.LoadManager(f);
         }
 
-        private void Authenticate_Click(object sender, RoutedEventArgs e)
+        private void Auth_Button_Click(object sender, RoutedEventArgs e)
         {
             p.Authenticate();
 
@@ -43,7 +42,7 @@ namespace Photo_Rainbow
             }
         }
 
-        private void Complete_Auth_Click(object sender, RoutedEventArgs e)
+        private void Complete_Authentication_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(CodeText.Text))
             {
@@ -57,13 +56,13 @@ namespace Photo_Rainbow
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
                 {
-                    List<Image> imgObjs = f.GetPhotos();                    
-                }                         
-            }            
+                    List<Image> imgObjs = f.GetPhotos();
+                }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }        
     }
 }

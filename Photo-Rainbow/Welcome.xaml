@@ -3,12 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Welcome" Height="400" Width="600">
     <Grid>
-        <Image x:Name="background" HorizontalAlignment="Left" Height="370" VerticalAlignment="Top" Width="592" Source="pack://siteoforigin:,,,/Resources/background1.PNG" Stretch="UniformToFill"/>
-        <Button Content="Start !" HorizontalAlignment="Left" Margin="258,277,0,0" VerticalAlignment="Top" Width="94" Height="29" FontSize="16" Foreground="#FFFDFBFB" Click="Button_Click_1">
-            <Button.Background>
-                <ImageBrush/>
-            </Button.Background>
-        </Button>
+        <Image HorizontalAlignment="Left" Height="360" Margin="0,10,0,0" VerticalAlignment="Top" Width="582"/>
+        <Image Margin="0,-12,10,0" Source="background1.PNG" Stretch="Fill"/>
+        <Button x:Name="App_Start_Button" Background="Transparent" Content="Start ! " HorizontalAlignment="Left" Margin="214,277,0,0" VerticalAlignment="Top" Width="165" Height="55" FontFamily="Tahoma" FontSize="14" OpacityMask="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Click="App_Start_Button_Click"/>
 
     </Grid>
 </Window>

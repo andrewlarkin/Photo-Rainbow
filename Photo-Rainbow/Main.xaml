@@ -3,12 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Photo Rainbow" Height="350" Width="525" Background="White">
     <Grid Margin="0,0,0,0" Name="First">
- 
-        <Button x:Name="Authenticate" Width="100" Height="36" Click="Authenticate_Click" Margin="208,59,209,225">Authenticate</Button>
-        
-        <TextBox x:Name="CodeText" Width="100" Height="36" Margin="208,100,209,184"></TextBox>
-        
-        <Button x:Name="CompleteAuth" Margin="189,141,178,143" Click="Complete_Auth_Click" Content="Complete Authentication"/>
+        <Image HorizontalAlignment="Left" Height="200" Margin="35,53,0,0" VerticalAlignment="Top" Width="245" Source="background2.jpg"/>
+        <Image Margin="0,0,10,0" Source="background2.jpg" Stretch="Fill"/>
+        <Button x:Name="Auth_Button" Background="Transparent" Content="Authenticate" HorizontalAlignment="Left" Margin="191,53,0,0" VerticalAlignment="Top" Width="142" Height="52" FontFamily="Tahoma" FontSize="14" Click="Auth_Button_Click"/>
+        <TextBox x:Name="CodeText" HorizontalAlignment="Left" Background ="Transparent" Height="36" Margin="178,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171"/>
+        <Button x:Name="Complete_Authentication" Background ="WhiteSmoke" Content="Complete Verification" HorizontalAlignment="Left" Margin="191,258,0,0" VerticalAlignment="Top" Width="142" Height="37" FontFamily="Tahoma" FontSize="14" Click="Complete_Authentication_Click"/>
 
         <!--<Button x:Name="ImageAnalysis" Margin="189,200,178,143" Click="Img_Analysis_Click" Content="Image Analysis"/>-->
            
