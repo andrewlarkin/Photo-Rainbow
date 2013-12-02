@@ -10,7 +10,7 @@ namespace Photo_Rainbow
     {
         void Authenticate();
 
-        List<Image> GetPhotos();
+        List<Image> GetPhotos();        
 
         Boolean IsAuthenticated();
     }

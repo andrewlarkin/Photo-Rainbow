@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlickrNet;
+using System.Drawing;
 
 namespace Photo_Rainbow
 {
@@ -75,15 +76,21 @@ namespace Photo_Rainbow
             foreach (Photo p in photocollection)
             {
                 if (p.LargeUrl != null)
-                {
+                {                    
                     Image userImage = new Image(p.LargeUrl);
-                    userImage.Download();
+                    ImageColorData vibgyorData = new ImageColorData();
+                    vibgyorData.GetColorData(userImage);
                     images.Add(userImage);
                 }
             }
 
             return images;
         
+        }
+
+        public void GetColorData()
+        {
+
         }
 
     }

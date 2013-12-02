@@ -56,16 +56,10 @@ namespace Photo_Rainbow
                 f.CompleteAuth(CodeText.Text);
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
-                {                    
-                    List<Image> imgObjs = f.GetPhotos();
-                    ImageColorData img = new ImageColorData();
-                    foreach (Image imgObj in imgObjs)
-                    {       
-                 
-                        Dictionary<String, List<System.Drawing.Color>> imgColor = img.getColorsInImage(imgObj.Img);                        
-                    }
-                }
-            }
+                {
+                    List<Image> imgObjs = f.GetPhotos();                    
+                }                         
+            }            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
