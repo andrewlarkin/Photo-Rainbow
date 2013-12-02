@@ -37,6 +37,14 @@
     <Reference Include="FlickrNet, Version=3.8.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FlickrNet.3.8.0\lib\net20\FlickrNet.dll</HintPath>
+    <Reference Include="FlickrNet">
+      <HintPath>..\..\..\..\MS\SDE\PhotoRainbow\FlickrNet.dll</HintPath>
+    </Reference>
+    <Reference Include="MyFlickr.Rest">
+      <HintPath>..\packages\MyFlickr.0.8.5\lib\net40\MyFlickr.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="MyFlickr.Rest.Synchronous">
+      <HintPath>..\packages\MyFlickr.0.8.5\lib\net40\MyFlickr.Rest.Synchronous.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -58,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="App_Code\StringSupport.cs" />
     <Compile Include="errorcred.xaml.cs">
       <DependentUpon>errorcred.xaml</DependentUpon>
     </Compile>
@@ -132,6 +141,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App_Code\Flickr2Html.cshtml" />
+    <None Include="FlickrNet\FlickrNet.chm" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Flickr2Html.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

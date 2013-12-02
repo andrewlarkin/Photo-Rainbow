@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>StringSupport</id>
+    <version>1.3</version>
+    <title>StringSupport</title>
+    <authors>daruyanagi</authors>
+    <owners>daruyanagi</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Extends "string" class.</description>
+    <summary>Extends "string" class.</summary>
+    <tags>ASPNETWEBPAGES</tags>
+    <references />
+  </metadata>
+</package>

@@ -1,0 +1,41 @@
+/*
+daruyanagi.net Flickr2Html Stylesheet
+v1.0
+2011-11-04
+Author: daruyanagi - http://daruyanagi.net/
+*/
+
+blockquote.flickr-image {
+    margin: 0 !important;
+    padding: 1em 0 !important;
+    background-color: white;
+    text-align: center;
+}
+
+blockquote.flickr-image img {
+    vertical-align: middle;
+}
+
+blockquote.flickr-image p {
+    margin-top: 1em;
+    margin-bottom: 0;
+    padding: 0
+}
+
+figure.flickr-image {
+    background-color: white;
+    text-align: center;
+    margin: 1em;
+}
+
+figure.flickr-image img {
+    vertical-align: middle;
+}
+
+figure.flickr-image figcaption {
+    margin: 1em;
+}
+
+.flickr-image-error {
+    color: red;
+}
