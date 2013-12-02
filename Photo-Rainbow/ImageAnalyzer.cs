@@ -53,7 +53,7 @@ namespace Photo_Rainbow
                                 PixelFormat format = bitmap.PixelFormat;
                                 Bitmap cloneBitmap = bitmap.Clone(cloneRect, format);
                                 imgColor = img.getColorsInImage(cloneBitmap);
-                                
+
                                 cloneBitmap.Dispose();
 
                             });
