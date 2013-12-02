@@ -66,7 +66,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="App_Code\StringSupport.cs" />
     <Compile Include="errorcred.xaml.cs">
       <DependentUpon>errorcred.xaml</DependentUpon>
     </Compile>
@@ -145,7 +144,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App_Code\Flickr2Html.cshtml" />
     <None Include="FlickrNet\FlickrNet.chm" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -158,9 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Flickr2Html.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
