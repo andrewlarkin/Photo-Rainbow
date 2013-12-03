@@ -56,7 +56,11 @@ namespace Photo_Rainbow
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
                 {
-                    List<Image> imgObjs = f.GetPhotos();
+                    List<Image> imgObjs = f.GetPhotos();                    
+                    UserImageDisplay imageDisplay = new UserImageDisplay(imgObjs);
+                    imageDisplay.LoadImages();
+                    imageDisplay.Show();
+                
                 }
             }
             catch (Exception ex)

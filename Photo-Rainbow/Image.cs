@@ -11,8 +11,8 @@ namespace Photo_Rainbow
 {
     public class Image 
     {
-        public static string imageUrl = "";
-        private static Bitmap img = null;       
+        public String imageUrl = "";
+        private Bitmap img = null;       
                 
         public Image(String imgUrl)
         {
