@@ -14,6 +14,8 @@ namespace Photo_Rainbow
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
         private Dictionary<String, List<float>> _colorKeyPixValue;
+        private Dictionary<Bitmap, Dictionary<String, float>> imageDataDictSorted = new Dictionary<Bitmap, Dictionary<String, float>>();
+            
         
         public Dictionary<String, List<float>> colorKeyPixValue
         {
@@ -131,18 +133,25 @@ namespace Photo_Rainbow
         }
 
         //AYESHA: Sorting logic
-        internal void getSortedImages()
+        internal List<Bitmap> getSortedImagesByColor(String color)
         {
-            var orderedItems = from pair in _colorKeyPixValue
-                               orderby pair.Key
-                               let values = pair.Value.OrderBy(i => i).Distinct()
-                               select new { Key = pair.Key, Value = values };
+            List<Bitmap> orderedItems = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => n.Key).ToList();
+                //Testing purpose
+                //var orderedItems = imageDataDictSorted.OrderByDescending( m => m.Value[color]).Select( n => new {
+                //    ImageName = n.Key,
+                //    Hue = n.Value[color]
+                //    }).ToList();
+            return orderedItems;
+        }
 
-            _colorKeyPixValue = new Dictionary<string, List<float>>();
-            foreach (var v in orderedItems)
-            {
-                _colorKeyPixValue.Add(v.Key, v.Value.ToList());
-            }
+        internal List<Bitmap> getSortedImagesByRainbow()
+        {
+            List<Bitmap> orderedItems = imageDataDictSorted.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select(n => n.Key).ToList();
+               //Testing purpose
+               //var  orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select( n => new {
+               // ImageName = n.Key,
+               // Hue = n.Value }).ToList();
+            return orderedItems;
         }
 
         public float percentageOfColorInImage(String colorName)
@@ -197,6 +206,8 @@ namespace Photo_Rainbow
             colAvgBrightnessDict.Add("Red", calcAverageBrightnessByColor("Red"));
             imgInfoDictList.Add(colAvgBrightnessDict);
             imageDataDict.Add(imgObj.Img, imgInfoDictList);
+            imageDataDictSorted.Add(imgObj.Img, colPercentageDict);
+
             return imageDataDict;
         }
 
