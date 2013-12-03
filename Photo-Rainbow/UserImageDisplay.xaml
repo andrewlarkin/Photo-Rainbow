@@ -1,0 +1,13 @@
+﻿<Window x:Class="Photo_Rainbow.UserImageDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PhotoRainbow" Height="425.672" Width="511.94">
+    <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ImagesBox"  HorizontalAlignment="Left" Height="396" VerticalAlignment="Top" Width="504">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel IsItemsHost="True"/>
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        
+    </ListBox>
+</Window>
