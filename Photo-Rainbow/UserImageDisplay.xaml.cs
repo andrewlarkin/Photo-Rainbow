@@ -49,5 +49,17 @@ namespace Photo_Rainbow
                 ImagesBox.Items.Add(userImage);
             }
         }
+
+        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Continue_Button_Click(object sender, RoutedEventArgs e)
+        {
+            options sortOption = new options(this.userImages);
+            sortOption.Show();
+            this.Close();
+        }
     }
 }
