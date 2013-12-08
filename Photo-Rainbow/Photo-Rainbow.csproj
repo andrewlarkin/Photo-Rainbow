@@ -58,9 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="errorcred.xaml.cs">
-      <DependentUpon>errorcred.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ImageAnalyzer.cs" />
     <Compile Include="login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
@@ -74,10 +71,6 @@
     <Compile Include="Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
-    <Page Include="errorcred.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
