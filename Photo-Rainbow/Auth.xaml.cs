@@ -58,10 +58,11 @@ namespace Photo_Rainbow
                 if (f.IsAuthenticated())
                 {
                     List<Image> imgObjs = f.GetPhotos();
-                    ImageAnalyzer procImages = new ImageAnalyzer(imgObjs);
+                    //ImageAnalyzer procImages = new ImageAnalyzer(imgObjs);
                     UserImageDisplay imageDisplay = new UserImageDisplay(imgObjs);
                     imageDisplay.LoadImages();
                     imageDisplay.Show();
+                    this.Close();
                 }                         
             }            
             catch (Exception ex)

@@ -19,9 +19,15 @@ namespace Photo_Rainbow
     /// </summary>
     public partial class options : Window
     {
+        private List<Image> imgs;
         public options()
         {
             InitializeComponent();
+        }
+        public options(List<Image> imgs)
+        {
+            InitializeComponent();
+            this.imgs = imgs;
         }
     }
 }
