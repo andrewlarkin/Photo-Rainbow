@@ -26,8 +26,8 @@ namespace Photo_Rainbow
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            login lg = new login();
-            lg.Show();
+            Auth auth = new Auth();
+            auth.Show();
             this.Close();
         }
     }
