@@ -26,8 +26,9 @@ namespace Photo_Rainbow
         
         private void App_Start_Button_Click(object sender, RoutedEventArgs e)
         {
-            Main authWindow = new Main();
-            authWindow.Show();
+            Auth auth = new Auth();
+            auth.Show();
+
             this.Close();
         }
     }

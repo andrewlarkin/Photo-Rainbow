@@ -91,13 +91,13 @@ using System.Drawing;
 namespace Photo_Rainbow
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AuthWindow.xaml
     /// </summary>
-    public partial class Main : Window
+    public partial class Auth : Window
     {
         private static PhotoServiceManager p = new PhotoServiceManager();
 
-        public Main()
+        public Auth()
         {
             InitializeComponent();
 
@@ -121,7 +121,7 @@ namespace Photo_Rainbow
         {
             if (String.IsNullOrEmpty(CodeText.Text))
             {
-                MessageBox.Show("You must paste the verifier code into the textbox above.");
+                ErrorLabel.Content = "Please Enter a Token Below:";
                 return;
             }
             try
