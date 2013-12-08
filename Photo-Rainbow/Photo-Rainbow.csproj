@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -34,9 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FlickrNet, Version=3.7.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
+    <Reference Include="FlickrNet, Version=3.8.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\mathu_backup\SoftwareDesignandEvolution\Project\FlickrNet.dll</HintPath>
       <HintPath>..\packages\FlickrNet.3.8.0\lib\net20\FlickrNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -62,16 +61,12 @@
     <Compile Include="errorcred.xaml.cs">
       <DependentUpon>errorcred.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageAnalyzer.cs" />
     <Compile Include="login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>
     <Compile Include="options.xaml.cs">
       <DependentUpon>options.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Resource1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="UserImageDisplay.xaml.cs">
       <DependentUpon>UserImageDisplay.xaml</DependentUpon>
@@ -148,12 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="background2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="background1.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,7 +28,7 @@
                     <TranslateTransform Y="100"/>
                 </TransformGroup>
             </TextBlock.RenderTransform>Photo Rainbow</TextBlock>
-        <Button Content="Start !" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="36" FontSize="16" Foreground="#000000" Click="Button_Click_1" Grid.Column="1" Grid.Row="2" Margin="54,0,64,0"/>
+        <Button Content="Start !" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="36" FontSize="16" Foreground="#000000" Click="App_Start_Button_Click" Grid.Column="1" Grid.Row="2" Margin="54,0,64,0"/>
 
     </Grid>
 </Window>
