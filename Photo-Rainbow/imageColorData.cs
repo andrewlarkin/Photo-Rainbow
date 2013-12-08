@@ -130,6 +130,7 @@ namespace Photo_Rainbow
                 }
             }
             return _colorByPixel;                
+
         }
 
         //AYESHA: Sorting logic
