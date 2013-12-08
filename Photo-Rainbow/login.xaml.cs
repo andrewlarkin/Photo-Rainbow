@@ -23,5 +23,16 @@ namespace Photo_Rainbow
         {
             InitializeComponent();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void complete_Verification_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

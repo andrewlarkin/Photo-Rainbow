@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace Photo_Rainbow
@@ -10,8 +11,8 @@ namespace Photo_Rainbow
     {
         void Authenticate();
 
-        List<Image> GetPhotos();        
-
+       List<Image> GetPhotos();        
+        
         Boolean IsAuthenticated();
     }
 }

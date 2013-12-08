@@ -36,6 +36,7 @@ namespace Photo_Rainbow
             {
 
                 OAuthToken = Instance.OAuthGetAccessToken(requestToken, Code);
+                
             }
             catch (FlickrApiException ex)
             {
@@ -67,30 +68,25 @@ namespace Photo_Rainbow
                 Properties.Settings.Default.Save();
             }
         }
-
-        public List<Image> GetPhotos()
-        {
-            List<Image> images = new List<Image>();
-
+      
+      public List<Image> GetPhotos()
+        {           
+            List<Image> images = new List<Image>();                           
             PhotoCollection photocollection = Instance.PeopleGetPhotos();            
             foreach (Photo p in photocollection)
-            {
-                if (p.LargeUrl != null)
-                {                    
-                    Image userImage = new Image(p.LargeUrl);
-                    ImageColorData vibgyorData = new ImageColorData();
-                    vibgyorData.GetColorData(userImage);
-                    images.Add(userImage);
-                }
+            {                
+                    if (p.LargeUrl != null)
+                    {
+                        Image userImage = new Image(p.LargeUrl);                        
+                        //ImageColorData vibgyorData = new ImageColorData();
+                        //vibgyorData.GetColorData(userImage);
+                        images.Add(userImage);
+                    }
+                
             }
 
             return images;
         
-        }
-
-        public void GetColorData()
-        {
-
         }
 
     }

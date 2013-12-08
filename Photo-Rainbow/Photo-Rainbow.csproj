@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FlickrNet, Version=3.7.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
+    <Reference Include="FlickrNet, Version=3.8.0.0, Culture=neutral, PublicKeyToken=2491df59efa5d132, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FlickrNet.3.8.0\lib\net20\FlickrNet.dll</HintPath>
     </Reference>
@@ -61,11 +61,15 @@
     <Compile Include="errorcred.xaml.cs">
       <DependentUpon>errorcred.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImageAnalyzer.cs" />
     <Compile Include="login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>
     <Compile Include="options.xaml.cs">
       <DependentUpon>options.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserImageDisplay.xaml.cs">
+      <DependentUpon>UserImageDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
@@ -96,6 +100,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserImageDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

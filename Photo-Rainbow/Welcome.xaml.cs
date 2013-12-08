@@ -23,11 +23,12 @@ namespace Photo_Rainbow
         {
             InitializeComponent();
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        
+        private void App_Start_Button_Click(object sender, RoutedEventArgs e)
         {
             Auth auth = new Auth();
             auth.Show();
+
             this.Close();
         }
     }

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="errorcred" Height="400" Width="600">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="370" VerticalAlignment="Top" Width="592" Source="pack://siteoforigin:,,,/Resources/background2.jpg" Stretch="UniformToFill"/>
         <TextBlock HorizontalAlignment="Left" Margin="75,101,0,0" TextWrapping="Wrap" Text="Wrong Credentials Try Again" VerticalAlignment="Top" Height="52" Width="466" FontSize="36" Foreground="#FFFFF7F7">
             <TextBlock.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

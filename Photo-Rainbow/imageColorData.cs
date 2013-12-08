@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Photo_Rainbow
 {
-    class ImageColorData
+    public class ImageColorData
     {
         private int imageWidth;
         private int imageHeight;
@@ -35,7 +35,7 @@ namespace Photo_Rainbow
             initializeClassMembers();
         }
        
-        private Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
+        internal Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
         {            
             int xCoord = 0, yCoord = 0;
             float temp = 0;            
@@ -128,6 +128,21 @@ namespace Photo_Rainbow
                 }
             }
             return _colorByPixel;                
+        }
+
+        //AYESHA: Sorting logic
+        internal void getSortedImages()
+        {
+            var orderedItems = from pair in _colorKeyPixValue
+                               orderby pair.Key
+                               let values = pair.Value.OrderBy(i => i).Distinct()
+                               select new { Key = pair.Key, Value = values };
+
+            _colorKeyPixValue = new Dictionary<string, List<float>>();
+            foreach (var v in orderedItems)
+            {
+                _colorKeyPixValue.Add(v.Key, v.Value.ToList());
+            }
         }
 
         public float percentageOfColorInImage(String colorName)
