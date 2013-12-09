@@ -17,33 +17,54 @@ namespace Photo_Rainbow
     /// <summary>
     /// Interaction logic for SortedImagesByRainbowDisplay.xaml
     /// </summary>
+    class DataGridItemsForRainbow
+    {
+        public float vPercent { get; set; }
+        public float IPercent { get; set; }
+        public float BPercent { get; set; }
+        public float GPercent { get; set; }
+        public float YPercent { get; set; }
+        public float OPercent { get; set; }
+        public float RPercent { get; set; }
+        public Uri ImageUrl { get; set; }
+    }
     public partial class SortedImagesByRainbowDisplay : Window
     {
-        private List<ImageDataStore> imgs;
+        private ImageDataStore imgDataObj;
         //private ImageColorData iCDObj = new ImageColorData();
         public SortedImagesByRainbowDisplay()
         {
             InitializeComponent();
         }
 
-        public SortedImagesByRainbowDisplay(List<ImageDataStore> imgs)
+        public SortedImagesByRainbowDisplay(ImageDataStore imgs)
         {
-            this.imgs = imgs;
+            this.imgDataObj = imgs;
             InitializeComponent();
+            LoadImages();
         }
-
-        private void Exit_Button_Click(object sender, RoutedEventArgs e)
+        
+        private void LoadImages()
         {
+            Dictionary<Image, Dictionary<String, float>> img7ColorsPercentage = imgDataObj.imgObjColorData.getSortedImagesByRainbow();
+            RainbowSortedImages.Items.Clear();
 
-        }
+            foreach (Image img in img7ColorsPercentage.Keys)
+            { 
+                Dictionary<String, float> colors7Value = img7ColorsPercentage[img];
+                RainbowSortedImages.Items.Add(new DataGridItemsForRainbow()
+                {
+                    ImageUrl = new Uri(img.Url),
+                    vPercent = colors7Value["Violet"],
+                    IPercent = colors7Value["Indigo"],
+                    BPercent = colors7Value["Blue"],
+                    GPercent = colors7Value["Green"],
+                    YPercent = colors7Value["Yellow"],
+                    OPercent = colors7Value["Orange"],
+                    RPercent = colors7Value["Red"]
+                });
 
-        /*private void initializeImageColorDictionary()
-        {
-            foreach (Image imgObj in imgObjs)
-            {
-                iCDObj.GetColorData(imgObj);
             }
-        }*/
-
+        }
     }
 }

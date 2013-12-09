@@ -138,7 +138,8 @@ namespace Photo_Rainbow
             {
                 float numberofPixelsByColor = _colorByPixel[colorName].Count();
                 float totalPixelsInImage = imageWidth * imageHeight;
-                float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
+                //float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
+                float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage);
                 return percentageOfColor;
             }
             else
@@ -172,23 +173,20 @@ namespace Photo_Rainbow
             }
             return dicImgHue;
         }
-
-       /* internal List<Image> getSortedImagesByColor(String color)
-        {
-            List<Image> orderedItems = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => n.Key).ToList();
-            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => new
+       
+        internal Dictionary<Image, Dictionary<String, float>> getSortedImagesByRainbow()
+        {            
+            Dictionary<Image, Dictionary<String, float>> dicImgRainbowHue = new Dictionary<Image, Dictionary<String, float>>();
+            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select(n => new 
             {
                 ImageName = n.Key,
-                Hue = n.Value[color]
-            }).ToList();            
-            //List<float> orderdHue = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => n.Value[color]).ToList();
-            return orderedItems;
-        }*/
-
-        internal List<Image> getSortedImagesByRainbow()
-        {
-            List<Image> orderedItems =  imageDataDictSorted.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select(n => n.Key).ToList();            
-            return orderedItems;
+                VIBGYORDict = n.Value
+            }).ToList();
+            foreach (var v in orderedItems2)
+            {
+                dicImgRainbowHue.Add(v.ImageName, v.VIBGYORDict);
+            }
+            return dicImgRainbowHue;
         }
        
         private static float adjustHue(float temp)
