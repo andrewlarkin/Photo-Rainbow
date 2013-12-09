@@ -20,7 +20,7 @@ namespace Photo_Rainbow
     /// </summary>
     public partial class UserImageDisplay : Window
     {
-        private List<Image> userImages;
+        private List<Image> userImages;        
         public UserImageDisplay(List<Image> userImages)
         {
             InitializeComponent();            
