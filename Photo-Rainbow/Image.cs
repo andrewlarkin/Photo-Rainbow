@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Net;
 using System.IO;
-
+using System.Windows.Media.Imaging;
 namespace Photo_Rainbow
 {
     public class Image 
@@ -31,6 +31,8 @@ namespace Photo_Rainbow
             try
             {
                 img = new Bitmap(stream);
+                Bitmap scaledImage = new Bitmap(img, new Size(100, 100));
+                img = scaledImage;
                 stream.Flush();
             }
             catch (Exception e)
@@ -42,7 +44,12 @@ namespace Photo_Rainbow
                 stream.Close();
             }
         }
+        
 
+        public void setUniformDimensions()
+        {
+            
+        }
         //TODO: Create accessor for color data
 
         public string Url
