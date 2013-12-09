@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace Photo_Rainbow
 {
@@ -28,6 +29,19 @@ namespace Photo_Rainbow
         {
             InitializeComponent();
             this.imgs = imgs;
+        }
+
+        private void Color_Sort_Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            SortedImagesByColorDisplay sIBCD = new SortedImagesByColorDisplay(imgs);
+            sIBCD.Show();
+
+        }
+
+        private void Rainbow_Sort_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

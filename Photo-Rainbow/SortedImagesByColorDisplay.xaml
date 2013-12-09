@@ -1,0 +1,27 @@
+﻿<Window x:Class="Photo_Rainbow.SortedImagesByColorDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PhotoRainbow" Height="505.97" Width="655.224">
+    <Grid x:Name="Indigo_Sort" HorizontalAlignment="Left" Height="480" VerticalAlignment="Top" Width="647" Margin="0,0,0,-4">
+        <Button x:Name="Violet_Sort" Content="Violet" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="123" Height="41" Click="Violet_Sort_Click"/>
+        <Button x:Name="Indigo_Sort1" Content="Indigo" HorizontalAlignment="Left" Margin="24,74,0,0" VerticalAlignment="Top" Width="123" Height="46" Click="Indigo_Sort1_Click"/>
+        <Button x:Name="Blue_Sort" Content="Blue" HorizontalAlignment="Left" Margin="24,140,0,0" VerticalAlignment="Top" Width="123" Click="Blue_Sort_Click" Height="41"/>
+        <Button x:Name="Green_Sort" Content="Green" HorizontalAlignment="Left" Margin="24,207,0,0" VerticalAlignment="Top" Width="123" Height="43" Click="Green_Sort_Click"/>
+        <Button x:Name="Yellow_Sort" Content="Yellow" HorizontalAlignment="Left" Margin="24,280,0,0" VerticalAlignment="Top" Width="123" RenderTransformOrigin="0.562,1.542" Height="44" Click="Yellow_Sort_Click"/>
+        <Button x:Name="Orange_Sort" Content="Orange" HorizontalAlignment="Left" Margin="24,347,0,0" VerticalAlignment="Top" Width="123" Height="44" Click="Orange_Sort_Click"/>
+        <Button x:Name="Red_Sort" Content="Red" HorizontalAlignment="Left" Margin="24,408,0,0" VerticalAlignment="Top" Width="123" Height="41" Click="Red_Sort_Click"/>
+        <DataGrid x:Name="Image1" HorizontalAlignment="Left" Margin="187,10,0,0" VerticalAlignment="Top" Height="460" Width="441">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="Image" Header="Image" Width="150" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImageFilePath}" Width="100" Height="100"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="Percentage" Header="Percentage" Binding="{Binding percentage}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</Window>
