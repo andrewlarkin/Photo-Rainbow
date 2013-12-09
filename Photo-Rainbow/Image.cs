@@ -12,17 +12,17 @@ namespace Photo_Rainbow
     public class Image 
     {
         public String imageUrl = "";
-        private Bitmap img = null;       
-                
+        private Bitmap img = null;        
         public Image(String imgUrl)
         {
             imageUrl = imgUrl;
-            Download();                        
+            Download();            
         }
         public Image()
         {
 
         }
+        
         public void Download()
         {
             WebClient client = new WebClient();

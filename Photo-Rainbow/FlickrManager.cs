@@ -69,23 +69,26 @@ namespace Photo_Rainbow
             }
         }
       
-      public List<Image> GetPhotos()
+      public ImageDataStore StorePhotosAndImageData()
         {           
-            List<Image> images = new List<Image>();                           
+            List<Image> images = new List<Image>();
+            ImageDataStore iODObj = new ImageDataStore();
+            ImageColorData iCDObj = new ImageColorData();          
             PhotoCollection photocollection = Instance.PeopleGetPhotos();            
             foreach (Photo p in photocollection)
             {                
                     if (p.LargeUrl != null)
-                    {
-                        Image userImage = new Image(p.LargeUrl);                        
-                        //ImageColorData vibgyorData = new ImageColorData();
-                        //vibgyorData.GetColorData(userImage);
+                    {                                             
+                        Image userImage = new Image(p.LargeUrl);                                              
+                        iCDObj.GetColorData(userImage);                        
                         images.Add(userImage);
                     }
                 
             }
+            iODObj.Images = images;
+            iODObj.imgObjColorData = iCDObj;
 
-            return images;
+            return iODObj;
         
         }
 

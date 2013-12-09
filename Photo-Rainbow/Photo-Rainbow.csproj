@@ -62,6 +62,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ImageAnalyzer.cs" />
+    <Compile Include="ImageDataStore.cs" />
     <Compile Include="login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>
@@ -70,6 +71,9 @@
     </Compile>
     <Compile Include="SortedImagesByColorDisplay.xaml.cs">
       <DependentUpon>SortedImagesByColorDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SortedImagesByRainbowDisplay.xaml.cs">
+      <DependentUpon>SortedImagesByRainbowDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserImageDisplay.xaml.cs">
       <DependentUpon>UserImageDisplay.xaml</DependentUpon>
@@ -103,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SortedImagesByColorDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SortedImagesByRainbowDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

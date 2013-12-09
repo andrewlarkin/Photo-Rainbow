@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Drawing;
 
+
 namespace Photo_Rainbow
 {
     /// <summary>
@@ -28,88 +29,75 @@ namespace Photo_Rainbow
     }
     public partial class SortedImagesByColorDisplay : Window
     {
-        private List<Image> imgObjs;
-        private ImageColorData iCDObj = new ImageColorData();
+        private ImageDataStore imgsData;
+        int count = 0;
         public SortedImagesByColorDisplay()
         {
             InitializeComponent();            
         }
 
-        public SortedImagesByColorDisplay(List<Image> imgObjs)
+        public SortedImagesByColorDisplay(ImageDataStore imgsData)
         {
-            this.imgObjs = imgObjs;            
-            InitializeComponent();
-            initializeImageColorDictionary();
+            this.imgsData = imgsData;            
+            InitializeComponent();            
         }
 
         private void Blue_Sort_Click(object sender, RoutedEventArgs e)
         {
-            List<Image> blueDominantImages = iCDObj.getSortedImagesByColor("Blue");
+            Dictionary<Image, float> blueDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Blue");            
             LoadImages(blueDominantImages);
         }
         
 
         private void Violet_Sort_Click(object sender, RoutedEventArgs e)
         {
-            List<Image> violetDominantImages = iCDObj.getSortedImagesByColor("Violet");
+            Dictionary<Image, float> violetDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Violet");
             LoadImages(violetDominantImages);
         }
 
         private void Green_Sort_Click(object sender, RoutedEventArgs e)
         {
-            List<Image> greenDominantImages = iCDObj.getSortedImagesByColor("Green");
+            Dictionary<Image, float> greenDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Green");
             LoadImages(greenDominantImages);
         }
 
         private void Indigo_Sort1_Click(object sender, RoutedEventArgs e)
         {
-            List<Image> indigoDominantImages = iCDObj.getSortedImagesByColor("Indigo");
+            //Image1.Items.Clear();
+            Dictionary<Image, float> indigoDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Indigo");
             LoadImages(indigoDominantImages);        
         }
 
         private void Yellow_Sort_Click(object sender, RoutedEventArgs e)
         {
-            List<Image> yellowDominantImages = iCDObj.getSortedImagesByColor("Yellow");
-
-
+            Dictionary<Image, float> yellowDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Yellow");
             LoadImages(yellowDominantImages);            
 
         }
 
         private void Orange_Sort_Click(object sender, RoutedEventArgs e)
         {
-            List<Image> orangeDominantImages = iCDObj.getSortedImagesByColor("Orange");
+            Dictionary<Image, float> orangeDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Orange");
             LoadImages(orangeDominantImages);
         }
 
         private void Red_Sort_Click(object sender, RoutedEventArgs e)
         {
-            List<Image> redDominantImages = iCDObj.getSortedImagesByColor("Red");
+            Dictionary<Image, float> redDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Red");
             LoadImages(redDominantImages);
         }
 
-        private void LoadImages(List<Image> imgObjs)
-        {
-
-            Image1.Items.Clear();
-
-            foreach (Image img in imgObjs)
-            {               
-                Image1.Items.Add(new DataGridItems() { ImageFilePath = new Uri(img.Url), percentage = 90 });
-            }                       
-
-        }
-
-        private void initializeImageColorDictionary()
-        {
-            foreach(Image imgObj in imgObjs)
-            {
-                iCDObj.GetColorData(imgObj);
+        private void LoadImages(Dictionary<Image, float> imagesColorPercentDict)
+        {            
+            Image1.Items.Clear();          
+           
+            foreach (Image img in imagesColorPercentDict.Keys)
+            {                
+                    Image1.Items.Add(new DataGridItems() { ImageFilePath = new Uri(img.Url), percentage = imagesColorPercentDict[img] });                                
             }
+        
         }
-
-
-
+        
 
     }
 

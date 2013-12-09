@@ -157,24 +157,40 @@ namespace Photo_Rainbow
                 return 0;
         }
 
-        internal List<Image> getSortedImagesByColor(String color)
+        //Ayesha Logic...
+        internal Dictionary<Image, float> getSortedImagesByColor(String color)
+        {
+            Dictionary<Image, float> dicImgHue = new Dictionary<Image, float>();
+            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => new
+            {
+                ImageName = n.Key,
+                Hue = n.Value[color]
+            }).ToList();
+            foreach (var v in orderedItems2)
+            {
+                dicImgHue.Add(v.ImageName, v.Hue);
+            }
+            return dicImgHue;
+        }
+
+       /* internal List<Image> getSortedImagesByColor(String color)
         {
             List<Image> orderedItems = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => n.Key).ToList();
+            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => new
+            {
+                ImageName = n.Key,
+                Hue = n.Value[color]
+            }).ToList();            
+            //List<float> orderdHue = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => n.Value[color]).ToList();
+            return orderedItems;
+        }*/
+
+        internal List<Image> getSortedImagesByRainbow()
+        {
+            List<Image> orderedItems =  imageDataDictSorted.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select(n => n.Key).ToList();            
             return orderedItems;
         }
-        //AYESHA: Sorting logic
-       /* internal Dictionary<Image, Dictionary<String, float>> getSortedImagesByColor(String color)
-        {
-            List<Image> orderedItems = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => n.Key).ToList();
-            Dictionary<Image, Dictionary<String, float>> orderedByColor = new Dictionary<Image, Dictionary<String, float>>();            
-            int itemCount = orderedItems.Count();
-            for (int itemIndex = 0; itemIndex < itemCount; itemIndex++)
-            {
-                Image imgObj = orderedItems[itemIndex];
-                orderedByColor.Add(imgObj, imageDataDictSorted[imgObj]);
-            }
-            return orderedByColor;
-        }*/
+       
         private static float adjustHue(float temp)
         {
             if (temp < 0)

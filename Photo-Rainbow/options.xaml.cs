@@ -20,21 +20,21 @@ namespace Photo_Rainbow
     /// </summary>
     public partial class options : Window
     {
-        private List<Image> imgs;
+        private ImageDataStore imgsData;
         public options()
         {
             InitializeComponent();
         }
-        public options(List<Image> imgs)
+        public options(ImageDataStore imgsData)
         {
             InitializeComponent();
-            this.imgs = imgs;
+            this.imgsData = imgsData;
         }
 
         private void Color_Sort_Button_Click(object sender, RoutedEventArgs e)
         {
             
-            SortedImagesByColorDisplay sIBCD = new SortedImagesByColorDisplay(imgs);
+            SortedImagesByColorDisplay sIBCD = new SortedImagesByColorDisplay(imgsData);
             sIBCD.Show();
 
         }
