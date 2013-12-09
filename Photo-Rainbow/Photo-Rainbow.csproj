@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -49,9 +50,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -59,11 +62,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ImageAnalyzer.cs" />
+    <Compile Include="ImageDataStore.cs" />
     <Compile Include="login.xaml.cs">
       <DependentUpon>login.xaml</DependentUpon>
     </Compile>
     <Compile Include="options.xaml.cs">
       <DependentUpon>options.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SortedImagesByColorDisplay.xaml.cs">
+      <DependentUpon>SortedImagesByColorDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SortedImagesByRainbowDisplay.xaml.cs">
+      <DependentUpon>SortedImagesByRainbowDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserImageDisplay.xaml.cs">
       <DependentUpon>UserImageDisplay.xaml</DependentUpon>
@@ -93,6 +103,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="options.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SortedImagesByColorDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SortedImagesByRainbowDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

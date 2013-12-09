@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace Photo_Rainbow
 {
@@ -19,15 +20,29 @@ namespace Photo_Rainbow
     /// </summary>
     public partial class options : Window
     {
-        private List<Image> imgs;
+        private ImageDataStore imgsData;
         public options()
         {
             InitializeComponent();
         }
-        public options(List<Image> imgs)
+        public options(ImageDataStore imgsData)
         {
             InitializeComponent();
-            this.imgs = imgs;
+            this.imgsData = imgsData;
+        }
+
+        private void Color_Sort_Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            SortedImagesByColorDisplay sIBCD = new SortedImagesByColorDisplay(imgsData);
+            sIBCD.Show();
+
+        }
+
+        private void Rainbow_Sort_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SortedImagesByRainbowDisplay sIBRD = new SortedImagesByRainbowDisplay(imgsData);
+            sIBRD.Show();
         }
     }
 }

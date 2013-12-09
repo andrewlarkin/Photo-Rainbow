@@ -20,11 +20,11 @@ namespace Photo_Rainbow
     /// </summary>
     public partial class UserImageDisplay : Window
     {
-        private List<Image> userImages;
-        public UserImageDisplay(List<Image> userImages)
+        private ImageDataStore userImagesData;        
+        public UserImageDisplay(ImageDataStore userImagesData)
         {
             InitializeComponent();            
-            this.userImages = userImages;
+            this.userImagesData = userImagesData;
         }
 
         public UserImageDisplay()
@@ -34,7 +34,7 @@ namespace Photo_Rainbow
 
         public void LoadImages()
         {            
-            foreach (Image img in userImages)
+            foreach (Image img in userImagesData.Images)
             {
                 System.Windows.Controls.Image userImage = new System.Windows.Controls.Image();
                 userImage.Height = 100;
@@ -57,7 +57,7 @@ namespace Photo_Rainbow
 
         private void Continue_Button_Click(object sender, RoutedEventArgs e)
         {
-            options sortOption = new options(this.userImages);
+            options sortOption = new options(this.userImagesData);
             sortOption.Show();
             this.Close();
         }

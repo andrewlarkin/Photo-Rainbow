@@ -57,11 +57,11 @@ namespace Photo_Rainbow
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
                 {
-                    List<Image> imgObjs = f.GetPhotos();
+                    ImageDataStore imgsDataObj = f.StorePhotosAndImageData();
                     //ImageAnalyzer procImages = new ImageAnalyzer(imgObjs);
-                    UserImageDisplay imageDisplay = new UserImageDisplay(imgObjs);
+                    UserImageDisplay imageDisplay = new UserImageDisplay(imgsDataObj);
                     imageDisplay.LoadImages();
-                    imageDisplay.Show();
+                    imageDisplay.Show();                    
                     this.Close();
                 }                         
             }            

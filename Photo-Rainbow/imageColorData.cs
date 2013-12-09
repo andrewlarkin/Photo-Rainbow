@@ -14,7 +14,8 @@ namespace Photo_Rainbow
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
         private Dictionary<String, List<float>> _colorKeyPixValue;
-        
+        private Dictionary<Image, Dictionary<String, float>> imageDataDictSorted = new Dictionary<Image, Dictionary<String, float>>();
+
         public Dictionary<String, List<float>> colorKeyPixValue
         {
             get { return _colorKeyPixValue; }
@@ -129,36 +130,65 @@ namespace Photo_Rainbow
             }
             return _colorByPixel;                
         }
-
-        //AYESHA: Sorting logic
-        internal void getSortedImages()
-        {
-            var orderedItems = from pair in _colorKeyPixValue
-                               orderby pair.Key
-                               let values = pair.Value.OrderBy(i => i).Distinct()
-                               select new { Key = pair.Key, Value = values };
-
-            _colorKeyPixValue = new Dictionary<string, List<float>>();
-            foreach (var v in orderedItems)
-            {
-                _colorKeyPixValue.Add(v.Key, v.Value.ToList());
-            }
-        }
+        
 
         public float percentageOfColorInImage(String colorName)
         {
-            float numberofPixelsByColor = _colorByPixel[colorName].Count();
-            float totalPixelsInImage = imageWidth * imageHeight;
-            float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
-            return percentageOfColor;
+            if (_colorByPixel.ContainsKey(colorName))
+            {
+                float numberofPixelsByColor = _colorByPixel[colorName].Count();
+                float totalPixelsInImage = imageWidth * imageHeight;
+                //float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
+                float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage);
+                return percentageOfColor;
+            }
+            else
+                return 0;
         }
         public float calcAverageBrightnessByColor(String colorName)
         {
-            float averageBrightnessByColor = 0;
-            int numberOfPixelsByColor = _colorByPixel[colorName].Count();
-            averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
-            return averageBrightnessByColor;
+            if (_colorByPixel.ContainsKey(colorName))
+            {
+                float averageBrightnessByColor = 0;
+                int numberOfPixelsByColor = _colorByPixel[colorName].Count();
+                averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
+                return averageBrightnessByColor;
+            }
+            else
+                return 0;
         }
+
+        //Ayesha Logic...
+        internal Dictionary<Image, float> getSortedImagesByColor(String color)
+        {
+            Dictionary<Image, float> dicImgHue = new Dictionary<Image, float>();
+            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => new
+            {
+                ImageName = n.Key,
+                Hue = n.Value[color]
+            }).ToList();
+            foreach (var v in orderedItems2)
+            {
+                dicImgHue.Add(v.ImageName, v.Hue);
+            }
+            return dicImgHue;
+        }
+       
+        internal Dictionary<Image, Dictionary<String, float>> getSortedImagesByRainbow()
+        {            
+            Dictionary<Image, Dictionary<String, float>> dicImgRainbowHue = new Dictionary<Image, Dictionary<String, float>>();
+            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select(n => new 
+            {
+                ImageName = n.Key,
+                VIBGYORDict = n.Value
+            }).ToList();
+            foreach (var v in orderedItems2)
+            {
+                dicImgRainbowHue.Add(v.ImageName, v.VIBGYORDict);
+            }
+            return dicImgRainbowHue;
+        }
+       
         private static float adjustHue(float temp)
         {
             if (temp < 0)
@@ -197,6 +227,7 @@ namespace Photo_Rainbow
             colAvgBrightnessDict.Add("Red", calcAverageBrightnessByColor("Red"));
             imgInfoDictList.Add(colAvgBrightnessDict);
             imageDataDict.Add(imgObj.Img, imgInfoDictList);
+            imageDataDictSorted.Add(imgObj, colPercentageDict);
             return imageDataDict;
         }
 
