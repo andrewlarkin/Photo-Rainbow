@@ -12,12 +12,13 @@ namespace UnitTests
     public class FlickrManagerTests
     {
         private static FlickrManager f;
-        private static Mock<Flickr> flickrMock;
+        private static Mock<FlickrManager> fMock;
 
         [SetUp]
         public void Init()
         {
             f = new FlickrManager();
+            fMock = new Mock<FlickrManager>();
         }
 
         [Test]
@@ -40,16 +41,17 @@ namespace UnitTests
             Assert.IsNotNull(f.url);
         }
 
-        [Test]
-        public void CompleteAuthTest()
-        {
-            //TODO: figure out how to test this
-        }
+    //    [Test]
+    //    public void CompleteAuthTest()
+    //    {
+    //        fMock.Verify(ff => ff.Authenticate(), Times.AtLeastOnce());
+    //        Assert.IsTrue(f.IsAuthenticated());
+    //    }
 
-        [Test]
-        public void GetPhotosTest()
-        {
-            //TODO: figure out how to test this 
-        }
+    //    [Test]
+    //    public void GetPhotosTest()
+    //    {
+    //        Assert.IsNotNull(f.GetPhotos());
+    //    }
     }
 }

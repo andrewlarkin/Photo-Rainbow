@@ -17,13 +17,13 @@ using System.Drawing;
 namespace Photo_Rainbow
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AuthWindow.xaml
     /// </summary>
-    public partial class Main : Window
+    public partial class Auth : Window
     {
         private static PhotoServiceManager p = new PhotoServiceManager();
 
-        public Main()
+        public Auth()
         {
             InitializeComponent();
 
@@ -47,7 +47,7 @@ namespace Photo_Rainbow
         {
             if (String.IsNullOrEmpty(CodeText.Text))
             {
-                MessageBox.Show("You must paste the verifier code into the textbox above.");
+                ErrorLabel.Content = "Please Enter a Token Below:";
                 return;
             }
             try
@@ -56,16 +56,15 @@ namespace Photo_Rainbow
                 f.CompleteAuth(CodeText.Text);
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
-                {                    
+                {
                     List<Image> imgObjs = f.GetPhotos();
-                    ImageColorData img = new ImageColorData();
-                    foreach (Image imgObj in imgObjs)
-                    {       
-                 
-                        Dictionary<String, List<System.Drawing.Color>> imgColor = img.getColorsInImage(imgObj.Img);                        
-                    }
-                }
-            }
+                    //ImageAnalyzer procImages = new ImageAnalyzer(imgObjs);
+                    UserImageDisplay imageDisplay = new UserImageDisplay(imgObjs);
+                    imageDisplay.LoadImages();
+                    imageDisplay.Show();
+                    this.Close();
+                }                         
+            }            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

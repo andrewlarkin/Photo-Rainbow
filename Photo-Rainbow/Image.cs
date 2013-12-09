@@ -9,20 +9,24 @@ using System.IO;
 
 namespace Photo_Rainbow
 {
-    public class Image
+    public class Image 
     {
-        public static string url;
-        private static Bitmap img;
-
-        public Image(string u)
+        public String imageUrl = "";
+        private Bitmap img = null;       
+                
+        public Image(String imgUrl)
         {
-            url = u;
+            imageUrl = imgUrl;
+            Download();                        
         }
+        public Image()
+        {
 
+        }
         public void Download()
         {
             WebClient client = new WebClient();
-            Stream stream = client.OpenRead(url);
+            Stream stream = client.OpenRead(imageUrl);
 
             try
             {
@@ -43,14 +47,15 @@ namespace Photo_Rainbow
 
         public string Url
         {
-            set { url = value; }
-            get { return url; }
+            set { imageUrl = value; }
+            get { return imageUrl; }
         }
-
+        
         public Bitmap Img
         {
             set { img = value; }
             get { return img; }
         }
+             
     }
 }
