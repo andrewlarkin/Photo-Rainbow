@@ -18,11 +18,12 @@ namespace Photo_Rainbow
     /// <summary>
     /// Interaction logic for SortedImagesByColorDisplay.xaml
     /// </summary>
+
     class DataGridItems
     {
-        //public System.Windows.Controls.Image image { get; set; }
+
         public float  percentage { get; set; }
-        //public string Finich { get; set; }
+
         public Uri ImageFilePath { get; set; }
     }
     public partial class SortedImagesByColorDisplay : Window
@@ -69,7 +70,10 @@ namespace Photo_Rainbow
         private void Yellow_Sort_Click(object sender, RoutedEventArgs e)
         {
             List<Image> yellowDominantImages = iCDObj.getSortedImagesByColor("Yellow");
+
+
             LoadImages(yellowDominantImages);            
+
         }
 
         private void Orange_Sort_Click(object sender, RoutedEventArgs e)
@@ -86,11 +90,14 @@ namespace Photo_Rainbow
 
         private void LoadImages(List<Image> imgObjs)
         {
+
             Image1.Items.Clear();
+
             foreach (Image img in imgObjs)
             {               
                 Image1.Items.Add(new DataGridItems() { ImageFilePath = new Uri(img.Url), percentage = 90 });
             }                       
+
         }
 
         private void initializeImageColorDictionary()
@@ -101,7 +108,9 @@ namespace Photo_Rainbow
             }
         }
 
-       
-       
+
+
+
     }
+
 }
