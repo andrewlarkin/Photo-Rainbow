@@ -44,46 +44,47 @@ namespace Photo_Rainbow
 
         private void Blue_Sort_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<Image, float> blueDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Blue");            
+
+            Dictionary<Image, float> blueDominantImages = getSortedImagesByColor("Blue");           
             LoadImages(blueDominantImages);
         }
         
 
         private void Violet_Sort_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<Image, float> violetDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Violet");
+            Dictionary<Image, float> violetDominantImages = getSortedImagesByColor("Violet");
             LoadImages(violetDominantImages);
         }
 
         private void Green_Sort_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<Image, float> greenDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Green");
+            Dictionary<Image, float> greenDominantImages = getSortedImagesByColor("Green");
             LoadImages(greenDominantImages);
         }
 
         private void Indigo_Sort1_Click(object sender, RoutedEventArgs e)
         {
             //Image1.Items.Clear();
-            Dictionary<Image, float> indigoDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Indigo");
+            Dictionary<Image, float> indigoDominantImages = getSortedImagesByColor("Indigo");
             LoadImages(indigoDominantImages);        
         }
 
         private void Yellow_Sort_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<Image, float> yellowDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Yellow");
+            Dictionary<Image, float> yellowDominantImages = getSortedImagesByColor("Yellow");
             LoadImages(yellowDominantImages);            
 
         }
 
         private void Orange_Sort_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<Image, float> orangeDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Orange");
+            Dictionary<Image, float> orangeDominantImages = getSortedImagesByColor("Orange");
             LoadImages(orangeDominantImages);
         }
 
         private void Red_Sort_Click(object sender, RoutedEventArgs e)
         {
-            Dictionary<Image, float> redDominantImages = imgsData.imgObjColorData.getSortedImagesByColor("Red");
+            Dictionary<Image, float> redDominantImages = getSortedImagesByColor("Red");
             LoadImages(redDominantImages);
         }
 
@@ -97,7 +98,22 @@ namespace Photo_Rainbow
             }
         
         }
-        
+
+        //Ayesha Logic...
+        private Dictionary<Image, float> getSortedImagesByColor(String color)
+        {
+            Dictionary<Image, float> dicImgHue = new Dictionary<Image, float>();
+            var orderedItems2 = imgsData.Image7ColorsData.OrderByDescending(m => m.Value[color]).Select(n => new
+            {
+                ImageName = n.Key,
+                Hue = n.Value[color]
+            }).ToList();
+            foreach (var v in orderedItems2)
+            {
+                dicImgHue.Add(v.ImageName, v.Hue);
+            }
+            return dicImgHue;
+        }
 
     }
 

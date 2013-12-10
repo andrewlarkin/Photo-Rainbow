@@ -71,24 +71,24 @@ namespace Photo_Rainbow
       
       public ImageDataStore StorePhotosAndImageData()
         {           
-            List<Image> images = new List<Image>();
-            ImageDataStore iODObj = new ImageDataStore();
-            ImageColorData iCDObj = new ImageColorData();          
+            List<Image> images = new List<Image>();            
+            ImageColorData iCDObj = new ImageColorData();  
+            ImageDataStore IDSObj = new ImageDataStore();
             PhotoCollection photocollection = Instance.PeopleGetPhotos();            
             foreach (Photo p in photocollection)
             {                
                     if (p.LargeUrl != null)
                     {                                             
-                        Image userImage = new Image(p.LargeUrl);                                              
-                        iCDObj.GetColorData(userImage);                        
+                        Image userImage = new Image(p.LargeUrl);                                            
+                        iCDObj.GetColorData(userImage, "percentage");
                         images.Add(userImage);
                     }
                 
             }
-            iODObj.Images = images;
-            iODObj.imgObjColorData = iCDObj;
 
-            return iODObj;
+            IDSObj.Image7ColorsData = iCDObj.ImageDataDictForSort;
+            IDSObj.Images = images;
+            return IDSObj;
         
         }
 

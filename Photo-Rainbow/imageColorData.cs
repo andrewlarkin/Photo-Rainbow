@@ -13,13 +13,7 @@ namespace Photo_Rainbow
         private int imageHeight;
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
-        private Dictionary<String, List<float>> _colorKeyPixValue;
-        private Dictionary<Image, Dictionary<String, float>> imageDataDictSorted = new Dictionary<Image, Dictionary<String, float>>();
-
-        public Dictionary<String, List<float>> colorKeyPixValue
-        {
-            get { return _colorKeyPixValue; }
-        }
+        private Dictionary<Image, Dictionary<String, float>> imageDataDictSorted  = new Dictionary<Image, Dictionary<String, float>>();
 
         public Dictionary<String, float> brightnessColorDict
         {
@@ -30,26 +24,29 @@ namespace Photo_Rainbow
         {
             get { return this._colorByPixel; }
         }
-
+        public Dictionary<Image, Dictionary<String, float>> ImageDataDictForSort
+        {
+            get { return imageDataDictSorted; }
+        }
         public ImageColorData()
         {
             initializeClassMembers();
         }
        
         internal Dictionary<String,List<Color>> getColorsInImage(Bitmap imageAsBitmap)
-        {            
+        {
             int xCoord = 0, yCoord = 0;
-            float temp = 0;            
+            float temp = 0;
             this.imageWidth = imageAsBitmap.Width;
             this.imageHeight = imageAsBitmap.Height;
-                
+
             for (xCoord = 0; xCoord < this.imageWidth; xCoord++)
             {
                 for (yCoord = 0; yCoord < this.imageHeight; yCoord++)
                 {
-                    Dictionary<float, String> imgVIBGYORHueDiffDict = new Dictionary<float, string>();                    
+                    Dictionary<float, String> imgVIBGYORHueDiffDict = new Dictionary<float, string>();
                     List<float> imgVIBGYORHueDiff = new List<float>();
-                    Color imgPixelColor = imageAsBitmap.GetPixel(xCoord, yCoord);                    
+                    Color imgPixelColor = imageAsBitmap.GetPixel(xCoord, yCoord);
                     float pixelColorHue = imgPixelColor.GetHue();
                     temp = pixelColorHue - Color.Violet.GetHue();
                     temp = adjustHue(temp);
@@ -68,14 +65,14 @@ namespace Photo_Rainbow
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Blue");
                     }
-                        
+
                     temp = pixelColorHue - Color.Green.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Green");
                     }
-                        
+
                     temp = pixelColorHue - Color.Yellow.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
@@ -89,16 +86,14 @@ namespace Photo_Rainbow
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Orange");
                     }
-
+                    //Color.Red.GetHue() gives 0 degree
                     temp = pixelColorHue - Color.Red.GetHue();
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
                     {
                         imgVIBGYORHueDiffDict.Add(temp, "Red");
                     }
-
-                    //Color Red has 2 hues one is 0 degree and another is 360 degree.
-                    //C# GetHue() method gives only 0 degree.
+                    //fringe case: Red have 2 degrees in a circle 0 and 360.
                     temp = pixelColorHue - 360;
                     temp = adjustHue(temp);
                     if (!imgVIBGYORHueDiffDict.ContainsKey(temp))
@@ -113,66 +108,43 @@ namespace Photo_Rainbow
                     if (_colorByPixel.ContainsKey(imgVIBGYORHueDiffDict[closestPixelColorByHue]))
                     {
                         _colorByPixel[imgVIBGYORHueDiffDict[closestPixelColorByHue]].Add(imgPixelColor);
-                        _colorKeyPixValue[imgVIBGYORHueDiffDict[closestPixelColorByHue]].Add(pixelColorHue);
                         _brightnessColorDict[imgVIBGYORHueDiffDict[closestPixelColorByHue]] += imgPixelColor.GetBrightness();
                     }
                     else
                     {
                         List<Color> pixelColorStructure = new List<Color>();
-                        List<float> pixelsHues = new List<float>();
                         pixelColorStructure.Add(imgPixelColor);
-                        pixelsHues.Add(pixelColorHue);
                         _colorByPixel.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelColorStructure);
-                        _colorKeyPixValue.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], pixelsHues);
-                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness()); 
-                    }                                     
+                        _brightnessColorDict.Add(imgVIBGYORHueDiffDict[closestPixelColorByHue], imgPixelColor.GetBrightness());
+                    }
                 }
             }
-            return _colorByPixel;                
+            return _colorByPixel;          
         }
-        
+
 
         public float percentageOfColorInImage(String colorName)
         {
+            float percentageOfColor = 0;
             if (_colorByPixel.ContainsKey(colorName))
             {
                 float numberofPixelsByColor = _colorByPixel[colorName].Count();
                 float totalPixelsInImage = imageWidth * imageHeight;
-                //float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
-                float percentageOfColor = (numberofPixelsByColor / totalPixelsInImage);
-                return percentageOfColor;
+                percentageOfColor = (numberofPixelsByColor / totalPixelsInImage) * 100;
             }
-            else
-                return 0;
+            return percentageOfColor;
         }
         public float calcAverageBrightnessByColor(String colorName)
         {
+            float averageBrightnessByColor = 0;
             if (_colorByPixel.ContainsKey(colorName))
             {
-                float averageBrightnessByColor = 0;
                 int numberOfPixelsByColor = _colorByPixel[colorName].Count();
                 averageBrightnessByColor = _brightnessColorDict[colorName] / numberOfPixelsByColor;
-                return averageBrightnessByColor;
             }
-            else
-                return 0;
+            return averageBrightnessByColor;
         }
-
-        //Ayesha Logic...
-        internal Dictionary<Image, float> getSortedImagesByColor(String color)
-        {
-            Dictionary<Image, float> dicImgHue = new Dictionary<Image, float>();
-            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value[color]).Select(n => new
-            {
-                ImageName = n.Key,
-                Hue = n.Value[color]
-            }).ToList();
-            foreach (var v in orderedItems2)
-            {
-                dicImgHue.Add(v.ImageName, v.Hue);
-            }
-            return dicImgHue;
-        }
+        
        
         internal Dictionary<Image, Dictionary<String, float>> getSortedImagesByRainbow()
         {            
@@ -202,8 +174,8 @@ namespace Photo_Rainbow
             }
         }
 
-        public Dictionary<Bitmap, List<Dictionary<String, float>>> GetColorData(Image imgObj)
-        {
+        /*public Dictionary<Bitmap, List<Dictionary<String, float>>> GetColorData(Image imgObj)
+        {            
             _colorByPixel = getColorsInImage(imgObj.Img);
             Dictionary<Bitmap, List<Dictionary<String, float>>> imageDataDict = new Dictionary<Bitmap, List<Dictionary<String, float>>>();
             Dictionary<String, float> colPercentageDict = new Dictionary<String, float>();
@@ -229,15 +201,38 @@ namespace Photo_Rainbow
             imageDataDict.Add(imgObj.Img, imgInfoDictList);
             imageDataDictSorted.Add(imgObj, colPercentageDict);
             return imageDataDict;
-        }
+        }*/
+    public void GetColorData(Image imgObj, String typeOfData)
+    {
+        initializeClassMembers();
+        _colorByPixel = getColorsInImage(imgObj.Img);        
+        if(typeOfData.Equals("percentage"))
+        {           
+            Dictionary<String, float> VIBGYORPercent = new Dictionary<string, float>();
+            float percentage = percentageOfColorInImage("Violet");
+            VIBGYORPercent.Add("Violet", percentage);
+            percentage = percentageOfColorInImage("Indigo");
+            VIBGYORPercent.Add("Indigo", percentage);
+            percentage = percentageOfColorInImage("Blue");
+            VIBGYORPercent.Add("Blue", percentage);
+            percentage = percentageOfColorInImage("Green");
+            VIBGYORPercent.Add("Green", percentage);
+            percentage = percentageOfColorInImage("Yellow");
+            VIBGYORPercent.Add("Yellow", percentage);
+            percentage = percentageOfColorInImage("Orange");
+            VIBGYORPercent.Add("Orange", percentage);
+            percentage = percentageOfColorInImage("Red");
+            VIBGYORPercent.Add("Red", percentage);
+            imageDataDictSorted.Add(imgObj, VIBGYORPercent);
+        }        
+    }
 
         public void initializeClassMembers()
         {
             imageWidth = 0;
             imageHeight = 0;
             _brightnessColorDict = new Dictionary<string, float>();
-            _colorByPixel = new Dictionary<string, List<Color>>();
-            _colorKeyPixValue = new Dictionary<String, List<float>>();
+            _colorByPixel = new Dictionary<string, List<Color>>();            
         }
     }
 }

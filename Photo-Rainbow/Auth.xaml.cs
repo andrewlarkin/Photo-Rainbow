@@ -57,9 +57,9 @@ namespace Photo_Rainbow
                 MessageBox.Show("User authenticated!");
                 if (f.IsAuthenticated())
                 {
-                    ImageDataStore imgsDataObj = f.StorePhotosAndImageData();
+                    ImageDataStore imgsAndData = f.StorePhotosAndImageData();
                     //ImageAnalyzer procImages = new ImageAnalyzer(imgObjs);
-                    UserImageDisplay imageDisplay = new UserImageDisplay(imgsDataObj);
+                    UserImageDisplay imageDisplay = new UserImageDisplay(imgsAndData);
                     imageDisplay.LoadImages();
                     imageDisplay.Show();                    
                     this.Close();

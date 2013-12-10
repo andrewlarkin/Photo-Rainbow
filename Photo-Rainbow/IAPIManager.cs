@@ -13,6 +13,7 @@ namespace Photo_Rainbow
 
        //List<Image> GetPhotos();        
         ImageDataStore StorePhotosAndImageData();
+
         Boolean IsAuthenticated();
     }
 }
