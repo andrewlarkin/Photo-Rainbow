@@ -41,8 +41,8 @@ namespace Photo_Rainbow
 
         private void Rainbow_Sort_Button_Click(object sender, RoutedEventArgs e)
         {
-            //SortedImagesByRainbowDisplay sIBRD = new SortedImagesByRainbowDisplay(imgsData);
-            //sIBRD.Show();
+            SortedImagesByRainbowDisplay sIBRD = new SortedImagesByRainbowDisplay(imgsData);
+            sIBRD.Show();
         }
     }
 }

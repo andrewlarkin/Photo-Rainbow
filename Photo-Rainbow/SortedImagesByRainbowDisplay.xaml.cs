@@ -37,16 +37,16 @@ namespace Photo_Rainbow
             InitializeComponent();
         }
 
-        public SortedImagesByRainbowDisplay(ImageDataStore imgs)
+        public SortedImagesByRainbowDisplay(ImageDataStore imgsData)
         {
-            this.imgDataObj = imgs;
+            this.imgDataObj = imgsData;
             InitializeComponent();
             LoadImages();
         }
         
         private void LoadImages()
         {
-            Dictionary<Image, Dictionary<String, float>> img7ColorsPercentage = imgDataObj.imgObjColorData.getSortedImagesByRainbow();
+            Dictionary<Image, Dictionary<String, float>> img7ColorsPercentage = getSortedImagesByRainbow();
             RainbowSortedImages.Items.Clear();
 
             foreach (Image img in img7ColorsPercentage.Keys)
@@ -65,6 +65,20 @@ namespace Photo_Rainbow
                 });
 
             }
+        }
+        private Dictionary<Image, Dictionary<String, float>> getSortedImagesByRainbow()
+        {
+            Dictionary<Image, Dictionary<String, float>> dicImgRainbowHue = new Dictionary<Image, Dictionary<String, float>>();
+            var orderedItems2 = imgDataObj.Image7ColorsData.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select(n => new
+            {
+                ImageName = n.Key,
+                VIBGYORDict = n.Value
+            }).ToList();
+            foreach (var v in orderedItems2)
+            {
+                dicImgRainbowHue.Add(v.ImageName, v.VIBGYORDict);
+            }
+            return dicImgRainbowHue;
         }
     }
 }

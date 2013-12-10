@@ -144,23 +144,7 @@ namespace Photo_Rainbow
             }
             return averageBrightnessByColor;
         }
-        
-       
-        internal Dictionary<Image, Dictionary<String, float>> getSortedImagesByRainbow()
-        {            
-            Dictionary<Image, Dictionary<String, float>> dicImgRainbowHue = new Dictionary<Image, Dictionary<String, float>>();
-            var orderedItems2 = imageDataDictSorted.OrderByDescending(m => m.Value["Violet"]).ThenBy(m => m.Value["Indigo"]).ThenBy(m => m.Value["Blue"]).ThenBy(m => m.Value["Green"]).ThenBy(m => m.Value["Yellow"]).ThenBy(m => m.Value["Orange"]).ThenBy(m => m.Value["Red"]).Select(n => new 
-            {
-                ImageName = n.Key,
-                VIBGYORDict = n.Value
-            }).ToList();
-            foreach (var v in orderedItems2)
-            {
-                dicImgRainbowHue.Add(v.ImageName, v.VIBGYORDict);
-            }
-            return dicImgRainbowHue;
-        }
-       
+                             
         private static float adjustHue(float temp)
         {
             if (temp < 0)
