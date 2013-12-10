@@ -13,6 +13,7 @@ namespace Photo_Rainbow
         private int imageHeight;
         private Dictionary<String, float> _brightnessColorDict;
         private Dictionary<String, List<Color>> _colorByPixel;
+
         private Dictionary<String, List<float>> _colorKeyPixValue;
         private Dictionary<Image, Dictionary<String, float>> imageDataDictSorted = new Dictionary<Image, Dictionary<String, float>>();
 
@@ -226,8 +227,10 @@ namespace Photo_Rainbow
             colAvgBrightnessDict.Add("Orange", calcAverageBrightnessByColor("Orange"));
             colAvgBrightnessDict.Add("Red", calcAverageBrightnessByColor("Red"));
             imgInfoDictList.Add(colAvgBrightnessDict);
+
             imageDataDict.Add(imgObj.Img, imgInfoDictList);
             imageDataDictSorted.Add(imgObj, colPercentageDict);
+
             return imageDataDict;
         }
 
